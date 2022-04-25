@@ -23,8 +23,8 @@ export default function homePage() {
         <View  style={styles.navButtons}>
           {/* <RouteButton text={'Profile'} style/>
           <RouteButton text={'Logout'}/> */}
-          <GenericButton text={'Profile'} style={{width:10}}/>
-          <GenericButton text={'Logout'} style={styles.routeButtons}/>
+          <GenericButton text={'Profile'}  style={{width:175, marginLeft:17}}/>
+          <GenericButton text={'Logout'} style={{width:175, marginLeft:10}}/>
         </View>
       </ImageBackground>
     </View>
@@ -51,13 +51,14 @@ const styles = StyleSheet.create({
     height: 400,
   },
   image:{
-    borderRadius: 400/2
+
+    borderRadius: 400/3
   },
   logo:{
     justifyContent:'center',
     alignItems:'center',
     flex:2,
-    backgroundColor:'yellow'
+    // backgroundColor:'yellow'
   },
   mainText:{
     fontSize:40
@@ -66,13 +67,13 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:'center',
     flex:1,
-    backgroundColor:'green'
+    // backgroundColor:'green'
   },
   navButtons:{
     flex:.27,
     justifyContent:'flex-start',
     flexDirection:'row',
-    backgroundColor:'blue'
+    // backgroundColor:'blue'
   },
   header:{
     paddingTop:20,

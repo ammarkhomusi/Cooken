@@ -12,8 +12,8 @@ export default function homePage() {
     <View style={styles.container}>
       <ImageBackground source={img} resizeMode='cover' style={styles.img}>
         <View style={styles.logo}>
-        <ImageBackground source={homeImg} resizeMode='cover' style={styles.homeImg} imageStyle={styles.image}></ImageBackground>
-          <Text style={styles.mainText}>What's</Text>
+        <ImageBackground blurRadius={10} source={homeImg} resizeMode='cover' style={styles.homeImg} imageStyle={styles.image}></ImageBackground>
+          <Text style={styles.mainText}>WHAT'S</Text>
           <Text style={styles.mainText}>COOKEN</Text>
         </View>
         <View style={styles.rollButtons}>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     height: 400,
   },
   image:{
-    borderRadius: 400/2
+    borderRadius: 400/3
   },
   logo:{
     justifyContent:'center',

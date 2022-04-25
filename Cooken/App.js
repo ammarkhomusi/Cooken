@@ -20,8 +20,8 @@ export default function App() {
   return (
     // <Login/>
     // <Profile/>
-    <Home/>
-    // <Result/>
+    // <Home/>
+    <Result/>
   );
   // if(fontsLoaded) {
   //   return (
