@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ImageBackground } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, useWindowDimensions } from 'react-native'
 import React, { useState } from 'react';
 import GenericButton from '../ButtonComponents/GenericButton';
 import RouteButton from '../ButtonComponents/RouteButton';
@@ -8,8 +8,10 @@ const homeImg = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.
 
 
 export default function homePage() {
+  const windowHeight = useWindowDimensions().height;
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {minHeight: Math.round(windowHeight)}]}>
       <ImageBackground source={img} resizeMode='cover' style={styles.img}>
         <View style={styles.logo}>
         <ImageBackground blurRadius={10} source={homeImg} resizeMode='cover' style={styles.homeImg} imageStyle={styles.image}></ImageBackground>
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   homeImg:{
-    marginTop:25,
+    marginTop:10,
     flex:1,
     justifyContent:'center',
     width: 400,
@@ -60,8 +62,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:"center",
     flex:1,
-    marginTop:20
-    // backgroundColor:'yellow'
+        // backgroundColor:'yellow'
   },
   mainText:{
     color:'#FDF397',
@@ -69,7 +70,13 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
     fontSize:86
   },
+  explainText:{
+    fontWeight:'bold',
+    fontSize:15
+  },
   rollButtons:{
+    paddingTop:20,
+    marginTop:20,
     paddingBottom:20,
     justifyContent:'center',
     alignItems:'center',

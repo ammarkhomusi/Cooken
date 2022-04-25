@@ -1,18 +1,20 @@
-import { View, Text, ImageBackground, StyleSheet, TextInput } from 'react-native'
+import { View, Text, ImageBackground, StyleSheet, TextInput, useWindowDimensions } from 'react-native'
 import React, { useState } from 'react'
-import GenericButton from '../ButtonComponents/GenericButton'
+import GenericButton from '../ButtonComponents/GenericButton';
+import { CheckBox } from 'react-native-elements';
 
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
 
 // initialState =
 
 export default function profile() {
+  const windowHeight = useWindowDimensions().height;
   // TODO should get user info from global state when login is pressed
   // const [email, setEmail] = useState(user.email)
   // const [username, setUsername] = useState(user.username)
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {minHeight: Math.round(windowHeight)}]} >
       <ImageBackground source={img} resizeMode='cover' style={styles.img}>
         <View style={styles.inputs}>
           <Text style={styles.pageTitle}>Account Info</Text>
@@ -27,7 +29,16 @@ export default function profile() {
             // value={username}
             />
         </View>
-        <View style={styles.checkBoxes}></View>
+        <View style={styles.checkBoxesContainer}>
+          <CheckBox></CheckBox><Text style={styles.checkBoxText}>italian</Text>
+          <CheckBox></CheckBox><Text style={styles.checkBoxText}>greek</Text>
+          <CheckBox></CheckBox><Text style={styles.checkBoxText}>american</Text>
+        </View>
+        <View style={styles.checkBoxesContainer}>
+          <CheckBox></CheckBox><Text style={styles.checkBoxText}>chinese</Text>
+          <CheckBox></CheckBox><Text style={styles.checkBoxText}>mexican</Text>
+          <CheckBox></CheckBox><Text style={styles.checkBoxText}>indian</Text>
+        </View>
         <View style={styles.buttons}>
           <GenericButton text={'Edit Account Info'}/>
           <GenericButton text={'Back'}/>
@@ -52,14 +63,16 @@ const styles = StyleSheet.create({
   pageTitle:{
     fontSize:20,
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    fontWeight:'bold'
   },
   inputs:{
     flex: 1,
-    backgroundColor: 'yellow',
+    // backgroundColor: 'yellow',
     justifyContent:'center',
     alignItems: 'center',
-    padding: 15
+    paddingTop:30,
+    marginTop:45
   },
   inputFields:{
     backgroundColor: 'white',
@@ -71,15 +84,21 @@ const styles = StyleSheet.create({
     width:300,
     borderRadius: 100/ 5,
   },
-  checkBoxes:{
-    flex:1,
-    backgroundColor:'blue'
+  checkBoxesContainer:{
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center',
+    flex:.3,
+  },
+  checkBoxText:{
+    fontWeight:'bold',
+    fontSize: 15
   },
   buttons:{
     justifyContent:'center',
     alignItems:'center',
     color:'orange',
     flex:1,
-    backgroundColor: 'green',
+    // backgroundColor: 'green',
   }
 })

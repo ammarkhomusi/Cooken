@@ -15,8 +15,8 @@ const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.apps
 
 
 export default function login() {
+ const windowHeight = useWindowDimensions().height;
 
-  const windowHeight = useWindowDimensions().height;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')

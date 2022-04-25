@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     borderRadius: 100/ 5,
   },
   text: {
-
+    fontWeight:'bold',
     color: 'white',
-    fontSize: 20
+    fontSize: 25
   }
 })

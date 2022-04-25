@@ -4,6 +4,7 @@ import Register from './screens/register';
 import Profile from './screens/profile';
 import Home from './screens/homePage';
 import Result from './screens/result';
+import RecipeDetails from './screens/recipeDetails';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 
@@ -21,7 +22,9 @@ export default function App() {
     // <Login/>
     // <Profile/>
     // <Home/>
-    <Result/>
+    // <Result/>
+    // <RecipeDetails/>
+    <Register/>
   );
   // if(fontsLoaded) {
   //   return (
