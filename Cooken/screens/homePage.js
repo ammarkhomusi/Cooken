@@ -1,17 +1,19 @@
-import { View, Text, StyleSheet, ImageBackground, useWindowDimensions } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground } from 'react-native'
 import React, { useState } from 'react';
 import GenericButton from '../ButtonComponents/GenericButton';
 import RouteButton from '../ButtonComponents/RouteButton';
+import Profile from './profile';
 
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
 const homeImg = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/Screenshot%20(70).png?alt=media&token=7bf3081e-d4f5-4865-a6bf-55e934ce3c84'}
 
 
 export default function homePage() {
-  const windowHeight = useWindowDimensions().height;
+
+
 
   return (
-    <View style={[styles.container, {minHeight: Math.round(windowHeight)}]}>
+    <View style={styles.container}>
       <ImageBackground source={img} resizeMode='cover' style={styles.img}>
         <View style={styles.logo}>
         <ImageBackground blurRadius={10} source={homeImg} resizeMode='cover' style={styles.homeImg} imageStyle={styles.image}></ImageBackground>
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:"center",
     flex:1,
-        // backgroundColor:'yellow'
+        backgroundColor:'yellow'
   },
   mainText:{
     color:'#FDF397',

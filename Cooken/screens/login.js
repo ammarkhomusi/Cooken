@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     margin: 15,
     height: 50,
     width:300,
-    borderRadius: 100/ 5,
+    borderRadius: 100/ 6,
   },
   passwordInput: {
     backgroundColor: 'white',

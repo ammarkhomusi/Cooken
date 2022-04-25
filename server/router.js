@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const userController = require('./controllers/user');
 const recipeController = require('./controllers/recipes');
-const authMiddleware = require('./middlewares/auth')
 
 //recipe routes//
 //gets random "wildcard" recipe
@@ -17,8 +16,8 @@ router.post('/register', userController.createUser);
 //login user
 router.post('/login', userController.loginUser);
 //view profile info once authenticated
-router.get('/profile', authMiddleware, userController.profileInfo);
+router.get('/profile', userController.profileInfo);
 //logout user
-router.post('/logout', authMiddleware, userController.logoutUser)
+router.post('/logout', userController.logoutUser)
 
 module.exports = router;
