@@ -8,9 +8,11 @@ const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.apps
 const homeImg = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/Screenshot%20(70).png?alt=media&token=7bf3081e-d4f5-4865-a6bf-55e934ce3c84'}
 
 
-export default function homePage() {
-
-
+export default function homePage({ navigation }) {
+  //routes
+  const toProfile = () => navigation.navigate('Profile');
+  const toLogin = () => navigation.navigate('Login');
+  const toResults = () => navigation.navigate('Results');
 
   return (
     <View style={styles.container}>
@@ -22,16 +24,16 @@ export default function homePage() {
         </View>
         <View style={styles.rollButtons}>
           <Text style={styles.explainText}>Picks a dish based off your preferences</Text>
-          <GenericButton text={'Roll For Your Recipe!'}/>
+          <GenericButton text={'Roll For Your Recipe!'} onPress={toResults}/>
           {/* add a dropdown option for difficutly? */}
           <Text style={styles.explainText}>Picks a totally random dish!</Text>
-          <GenericButton text={'Suprise Me!!'}/>
+          <GenericButton text={'Suprise Me!!'} onPress={toResults}/>
         </View>
         <View  style={styles.navButtons}>
           {/* <RouteButton text={'Profile'} style/>
           <RouteButton text={'Logout'}/> */}
-          <GenericButton text={'Profile'} style={{width:175, marginLeft:17}}/>
-          <GenericButton text={'Logout'} style={{width:175, marginLeft:10}}/>
+          <GenericButton text={'Profile'} style={{width:175, marginLeft:17}} onPress={toProfile}/>
+          <GenericButton text={'Logout'} style={{width:175, marginLeft:10}} onPress={toLogin}/>
         </View>
       </ImageBackground>
     </View>
@@ -64,7 +66,6 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:"center",
     flex:1,
-        backgroundColor:'yellow'
   },
   mainText:{
     color:'#FDF397',

@@ -1,66 +1,140 @@
-import { View, Text, TextInput, ImageBackground, StyleSheet, useWindowDimensions } from 'react-native'
+import { View, Text, TextInput, ImageBackground, StyleSheet, useWindowDimensions, TouchableWithoutFeedback, Keyboard} from 'react-native'
 import React, { useState } from 'react'
 import GenericButton from '../ButtonComponents/GenericButton';
-// import { CheckBox } from 'react-native-elements';
 import Checkbox from 'expo-checkbox';
+import { userService } from '../Services/userService';
+// require('dotenv').config()
+// import { userService } from '../Services/userService'
 
+const baseURL = process.env.baseURL;
 
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
 
-export default function register() {
+export default function register({ navigation }) {
+  console.log(baseURL)
   const windowHeight = useWindowDimensions().height;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+  const [favCuisines, setFavCuisines] = useState([])
   //checkbox states
-  const [italianisChecked, setItalianIsChecked] = useState(false);
-  const [greekisChecked, setGreekIsChecked] = useState(false);
-  const [americanisChecked, setAmericanIsChecked] = useState(false);
-  const [chineseisChecked, setChineseIsChecked] = useState(false);
-  const [mexicanisChecked, setMexicanIsChecked] = useState(false);
-  const [indianisChecked, setIndianIsChecked] = useState(false);
+  const [italianIsChecked, setItalianIsChecked] = useState({ checked: false , value: 'italian'});
+  const [greekIsChecked, setGreekIsChecked] = useState({checked: false, value: 'greek'});
+  const [americanIsChecked, setAmericanIsChecked] = useState({checked: false, value:'american'});
+  const [chineseIsChecked, setChineseIsChecked] = useState({checked: false, value:'chinese'});
+  const [mexicanIsChecked, setMexicanIsChecked] = useState({checked: false, value:'mexican'});
+  const [indianIsChecked, setIndianIsChecked] = useState({checked: false, value:'indian'});
 
+  const backToLogin = () => navigation.navigate('Login');
+
+  async function handleSubmit(e)  {
+    e.preventDefault();
+    const newUser = { email, password, username, favCuisines };
+    //TODO take out ip and replace with .env value
+    fetch(`http://192.168.1.117:3001/register`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(newUser)
+    }).then(() => {
+      console.log(newUser)
+    })
+    setEmail('');
+    setPassword('');
+    setUsername('');
+    setFavCuisines([]);
+    setItalianIsChecked(false);
+    setGreekIsChecked(false);
+    setAmericanIsChecked(false);
+    setChineseIsChecked(false);
+    setMexicanIsChecked(false);
+    setIndianIsChecked(false);
+    navigation.navigate('Login');
+    }
+    //checkbox add to favecuisine array
+    const saveCheck = (obj) => {
+      if(!obj.checked) {
+        setFavCuisines([...favCuisines, obj.value])
+      } else {
+        setFavCuisines(favCuisines.filter((cuisine)=> {
+          return cuisine !== obj.value;
+        }))
+      }
+
+    }
 
   return (
-    <View style={[styles.container, {minHeight: Math.round(windowHeight)}]} >
-      <ImageBackground source={img} resizeMode='cover' style={styles.img}>
-        <View style={styles.inputs}>
-          <Text style={styles.pageInfo}>Create Your Account</Text>
-          <TextInput
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={[styles.container, {minHeight: Math.round(windowHeight)}]} >
+        <ImageBackground source={img} resizeMode='cover' style={styles.img}>
+          <View style={styles.inputs}>
+            <Text style={styles.pageInfo}>Create Your Account</Text>
+            <TextInput
+              style={styles.inputFields}
+              onChangeText={(email) => setEmail(email)}
+              value={email}
+              placeholder="Enter Email"
+              />
+            <TextInput
             style={styles.inputFields}
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            placeholder="Enter Email"
+            onChangeText={(password) => setPassword(password)}
+            value={password}
+            placeholder="Create Password"
             />
-          <TextInput
-           style={styles.inputFields}
-           onChange={(e) => setPassword(e.target.value)}
-           value={password}
-           placeholder="Create Password"
-           />
-          <TextInput
-           style={styles.inputFields}
-           onChange={(e) => setUsername(e.target.value)}
-           value={username}
-           placeholder="Create Username"
-           />
-        </View>
-        <View style={styles.checkBoxesContainer}>
-          <Checkbox value={italianisChecked} onValueChange={setItalianIsChecked}></Checkbox><Text style={styles.checkBoxText}>italian</Text>
-          <Checkbox value={greekisChecked} onValueChange={setGreekIsChecked}></Checkbox><Text style={styles.checkBoxText}>greek</Text>
-          <Checkbox value={americanisChecked} onValueChange={setAmericanIsChecked}></Checkbox><Text style={styles.checkBoxText}>american</Text>
-        </View>
-        <View style={styles.checkBoxesContainer}>
-          <Checkbox value={chineseisChecked} onValueChange={setChineseIsChecked}></Checkbox><Text style={styles.checkBoxText}>chinese</Text>
-          <Checkbox value={mexicanisChecked} onValueChange={setMexicanIsChecked}></Checkbox><Text style={styles.checkBoxText}>mexican</Text>
-          <Checkbox value={indianisChecked} onValueChange={setIndianIsChecked}></Checkbox><Text style={styles.checkBoxText}>indian</Text>
-        </View>
-        <View style={styles.buttons}>
-          <GenericButton text={'Create Account'}/>
-          <GenericButton text={'Back to Login'}/>
-        </View>
-      </ImageBackground>
-    </View>
+            <TextInput
+            style={styles.inputFields}
+            onChangeText={(username) => setUsername(username)}
+            value={username}
+            placeholder="Create Username"
+            />
+          </View>
+          <View style={styles.checkBoxesContainer}>
+            <Checkbox
+              value={italianIsChecked.checked}
+              onValueChange={(e) => {
+                setItalianIsChecked({...italianIsChecked, checked: e})
+                saveCheck(italianIsChecked)
+            }}></Checkbox><Text style={styles.checkBoxText}>italian</Text>
+            <Checkbox
+              value={greekIsChecked.checked}
+              onValueChange={(e) => {
+                setGreekIsChecked({...greekIsChecked, checked: e})
+                saveCheck(greekIsChecked)
+            }}>
+            </Checkbox><Text style={styles.checkBoxText}>greek</Text>
+            <Checkbox
+              value={americanIsChecked.checked}
+              onValueChange={(e) => {
+                setAmericanIsChecked({...americanIsChecked, checked: e})
+                saveCheck(americanIsChecked)
+              }}></Checkbox><Text style={styles.checkBoxText}>american</Text>
+          </View>
+          <View style={styles.checkBoxesContainer}>
+            <Checkbox
+              value={chineseIsChecked.checked}
+              onValueChange={(e) => {
+                setChineseIsChecked({...chineseIsChecked, checked: e})
+                saveCheck(chineseIsChecked)
+              }}></Checkbox><Text style={styles.checkBoxText}>chinese</Text>
+            <Checkbox
+              value={mexicanIsChecked.checked}
+              onValueChange={(e) => {
+                setMexicanIsChecked({...mexicanIsChecked, checked: e})
+                saveCheck(mexicanIsChecked)
+              }}></Checkbox><Text style={styles.checkBoxText}>mexican</Text>
+            <Checkbox
+              value={indianIsChecked.checked}
+              onValueChange={(e) => {
+                setIndianIsChecked({...indianIsChecked, checked: e})
+                saveCheck(indianIsChecked)
+              }}></Checkbox><Text style={styles.checkBoxText}>indian</Text>
+          </View>
+          <View style={styles.buttons}>
+            <GenericButton text={'Submit Account Details'} onPress={handleSubmit}/>
+            <GenericButton text={'Back to Login'} onPress={backToLogin}/>
+          </View>
+        </ImageBackground>
+      </View>
+    </TouchableWithoutFeedback>
   )
 }
 

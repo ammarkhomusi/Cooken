@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const User = require('./../models/user');
 
 const createUser = async (req, res) => {
+  console.log('I am here', req.body);
   const { email, password } = req.body;
   const user = await User.findOne({ email: email});
   if(user) {
@@ -16,8 +17,7 @@ const createUser = async (req, res) => {
       ...req.body,
       password: hash,
     });
-    const user = await newUser.save();
-    req.session.uid = user._id;
+    const user = await User.create(newUser);
     res.status(201).send(user);
   } catch (error) {
     res.status(400).send({ error, message: 'Could not create user'})

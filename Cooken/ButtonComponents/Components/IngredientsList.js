@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 
-export default function IngredientsList() {
+export default function IngredientsList({ name, amount }) {
   return (
     <View style={styles.ingredientsContainer}>
-      <Text style={styles.ingredientText}>2</Text>
-      <Text style={styles.ingredientText}>lbs of Spinach</Text>
+      <Text style={styles.ingredientText}>{amount}</Text>
+      <Text style={styles.ingredientText}>{name}</Text>
     </View>
   )
 }
@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   },
   ingredientText:{
     fontSize:15,
+    marginLeft:10,
     color:'white',
     fontWeight:'bold'
   }

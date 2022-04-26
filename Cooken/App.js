@@ -5,39 +5,24 @@ import Profile from './screens/profile';
 import Home from './screens/homePage';
 import Result from './screens/result';
 import RecipeDetails from './screens/recipeDetails';
-import * as Font from 'expo-font';
+import Navigator from './routes/homeStack'
+
 import { AppLoading } from 'expo';
 
-const getFont = () =>{
-  return Font.loadAsync({
-    'architects-daughter': require('./assets/fonts/ArchitectsDaughter-Regular.ttf'),
-    'permanentMarker-regular': require('./assets/fonts/PermanentMarker-Regular.ttf')
-  })
-}
+//user Context provider here
+
 
 export default function App() {
-  const [fontsLoaded, setFontsLoaded] = useState(false);
-
+  //setting blank state to context provider and updating on login press is username exists
+  // if not alert username is incorrect
   return (
-    // <Login/>
+    <Navigator/>
     // <Profile/>
     // <Home/>
     // <Result/>
     // <RecipeDetails/>
-    <Register/>
+    // <Register/>
   );
-  // if(fontsLoaded) {
-  //   return (
-  //     <Login/>
-  //   );
-  // } else {
-  //   return (
-  //     <AppLoading
-  //       startAsync={getFont}
-  //       onFinish={() => setFontsLoaded(true)}
-  //     />
-  //   );
-  // }
 }
 
 

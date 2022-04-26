@@ -1,15 +1,23 @@
 const baseUrl = process.env.baseURL;
 
-const createUser = (user) => {
-  return fetch(`${baseUrl}/register` , {
-    method: 'POST',
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ user }),
-  })
-    .then((res) => res.json())
-    .then((data) => data)
-    .catch((e) => e);
-}
+const createUser = async (user) => {
+  try {
+    const res = await fetch(`${baseUrl}/register`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user }),
+    });
+    const data = await res.json();
+    return data;
+  } catch (e) {
+    return e;
+  }
+};
 
+
+
+export const userService = {
+  createUser,
+}

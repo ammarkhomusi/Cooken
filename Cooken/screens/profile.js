@@ -7,11 +7,18 @@ const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.apps
 
 
 
-export default function profile() {
+export default function profile({ navigation }) {
   const windowHeight = useWindowDimensions().height;
   // TODO should get user info from global state when login is pressed
   // const [email, setEmail] = useState(user.email)
   // const [username, setUsername] = useState(user.username)
+
+
+  //routes
+  const toHome = () => {
+    navigation.navigate('Home')
+  }
+
 
   return (
     <View style={[styles.container, {minHeight: Math.round(windowHeight)}]} >
@@ -20,11 +27,13 @@ export default function profile() {
           <Text style={styles.pageTitle}>Account Info</Text>
           <TextInput
             style={styles.inputFields}
+            editable={false}
             // TODO
             // value={email}
             />
            <TextInput
             style={styles.inputFields}
+            editable={false}
             //TODO
             // value={username}
             />
@@ -41,7 +50,7 @@ export default function profile() {
         </View>
         <View style={styles.buttons}>
           <GenericButton text={'Edit Account Info'}/>
-          <GenericButton text={'Back'}/>
+          <GenericButton text={'Save Changes'} onPress={toHome}/>
         </View>
       </ImageBackground>
     </View>

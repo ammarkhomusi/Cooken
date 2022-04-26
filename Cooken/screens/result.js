@@ -6,8 +6,17 @@ import RouteButton from '../ButtonComponents/RouteButton';
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
 const sampleImg = {uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/greek-salad-3-1200.jpg?alt=media&token=1978a2df-c283-46b2-8754-73b233b21677'}
 //will be recipe.imgUrl
-export default function homePage() {
+export default function homePage({ navigation }) {
   const windowHeight = useWindowDimensions().height;
+
+  //routes
+  const toDetails = () => navigation.navigate('RecipeDetails');
+  const reloadWithNewResult = () => {
+    navigation.navigate('Result');
+  };
+  const toHome = () => navigation.navigate('Home');
+  const toProfile = () => navigation.navigate('Profile');
+
   return (
     <View style={[styles.container, {minHeight: Math.round(windowHeight)}]} >
       <ImageBackground source={img} resizeMode='cover' style={styles.img}>
@@ -17,15 +26,15 @@ export default function homePage() {
           <ImageBackground source={sampleImg} resizeMode='cover' style={styles.sampleImg} imageStyle={styles.image}></ImageBackground>
         </View>
         <View style={styles.chooseButtons}>
-          <GenericButton text={'Get Cooken!'} style={{marginTop:15}}/>
+          <GenericButton text={'Get Cooken!'} style={{marginTop:15}} onPress={toDetails}/>
           {/* add a dropdown option for difficutly? */}
-          <GenericButton text={'Re-roll'}/>
+          <GenericButton text={'Re-roll'} onPress={reloadWithNewResult}/>
         </View>
         <View  style={styles.navButtons}>
           {/* <RouteButton text={'Profile'} style/>
           <RouteButton text={'Logout'}/> */}
-          <GenericButton text={'Profile'}  style={{width:175, marginLeft:17}}/>
-          <GenericButton text={'Logout'} style={{width:175, marginLeft:10}}/>
+          <GenericButton text={'Home'}  style={{width:175, marginLeft:17}} onPress={toHome}/>
+          <GenericButton text={'Profile'} style={{width:175, marginLeft:10}} onPress={toProfile}/>
         </View>
       </ImageBackground>
     </View>
