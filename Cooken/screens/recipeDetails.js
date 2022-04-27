@@ -6,40 +6,28 @@ import GenericButton from '../ButtonComponents/GenericButton';
 // const sampleImg = {uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/greek-salad-3-1200.jpg?alt=media&token=1978a2df-c283-46b2-8754-73b233b21677'}
 //{...recipe, imgUrl: {uri : recipe.imgURL}}
 
-export default function recipeDetails({ navigation }) {
+export default function RecipeDetails({ navigation , route }) {
+  const { recipe, email, favCuisines } = route.params
+  console.log('recipe i ndetails', recipe)
   //routes
-  const toHome = () => navigation.navigate('Home');
+  const toHome = () => navigation.navigate('Home', { email: email, favCuisines: favCuisines});
   const toProfile = () => navigation.navigate('Profile')
   const windowHeight = useWindowDimensions().height;
-  const [recipe, setRecipe] = useState({
-    title: 'Greek Salad',
-    imgUrl: {uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/greek-salad-3-1200.jpg?alt=media&token=1978a2df-c283-46b2-8754-73b233b21677'},
-    ingredients: [{ingredientAmount: 2, ingredientName: 'lbs of Spinach'},
-                  { ingredientAmount: 3, ingredientName: 'lbs of tomatoes'},
-                  {ingredientAmount:1, ingredientName:'cucumber'},
-                  {ingredientAmount:4, ingredientName:'oz of black olives'}],
-    instructions:`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-    ut labore et dolore magna aliqua. Amet cursus sit amet dictum sit amet justo. Pellentesque
-    pulvinar pellentesque habitant morbi tristique senectus et. Massa massa ultricies mi quis
-    hendrerit dolor magna. Eu augue ut lectus arcu bibendum at varius vel. Sodales ut eu sem
-    integer vitae justo eget magna fermentum. Amet facilisis magna etiam tempor. Nunc eget`,
-    cuisineTag:'greek'
-    })
 
 
   return (
     <ScrollView style={styles.container}>
       <View style={[styles.mainContainer, {minHeight: Math.round(windowHeight)}]} >
-      <ImageBackground source={recipe.imgUrl} resizeMode='cover' style={styles.sampleImg} imageStyle={styles.image}></ImageBackground>
+      <ImageBackground source={recipe.imgURL} resizeMode='cover' style={styles.sampleImg} imageStyle={styles.image}></ImageBackground>
       <View styles={styles.recipeTitleView}>
         <Text style={styles.recipeTitle}>{recipe.title}</Text>
       <View style={styles.cuisineTagContainer}>
-        <Text style={styles.cuisineTag}>tags:</Text><Text style={styles.cuisineTagText}>{recipe.cuisineTag}</Text>
+        <Text style={styles.cuisineTag}>tags:</Text><Text style={styles.cuisineTagText}>"{recipe.cuisineTag}"</Text>
       </View>
       </View>
       <View style={styles.ingredients}>
-        {recipe.ingredients.map((item) => {
-          return <IngredientsList name={item.ingredientName} amount={item.ingredientAmount} />
+        {recipe.ingredients.map((item, index) => {
+          return <IngredientsList name={item.ingredientName} amount={item.ingredientAmount} key={index} />
         })}
 
         {/* will map through recipe.ingredients[] */}
@@ -102,7 +90,6 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:'center',
     fontSize:20,
-    marginLeft:20
   },
   ingredients:{
     borderWidth:2,

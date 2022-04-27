@@ -26,11 +26,9 @@ const createUser = async (req, res) => {
 
 const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email } = req.body;
     const user = await User.findOne({ email: email});
-    const validatedPass = await bcrypt.compare(password, user.password);
-    if(!validatedPass) throw new Error();
-    req.session.uid = user._id;
+    console.log(user)
     res.status(200).send(user);
   } catch (error) {
    res.status(401).send({ error: '401', message: 'Username or password is incorrect'});

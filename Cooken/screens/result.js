@@ -2,19 +2,37 @@ import { View, Text, StyleSheet, ImageBackground, useWindowDimensions } from 're
 import React, { useState } from 'react';
 import GenericButton from '../ButtonComponents/GenericButton';
 import RouteButton from '../ButtonComponents/RouteButton';
+import { recipeServices } from '../Services/recipeService';
 
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
 const sampleImg = {uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/greek-salad-3-1200.jpg?alt=media&token=1978a2df-c283-46b2-8754-73b233b21677'}
 //will be recipe.imgUrl
-export default function homePage({ navigation }) {
+export default function Results({ navigation, route }) {
+  const  {recipe, email, favCuisines} = route.params;
+  // console.log('this is res',res)
+  // const email = '';
+  // const favCuisines = [];
+  // const recipe = {};
+  // console.log('thisis fave cuis', favCuisines)
+  // console.log('this is result screen',recipe)
+  // console.log('this new state', newRecipe)
   const windowHeight = useWindowDimensions().height;
 
+  const [newRecipe, setNewRecipe] = useState({...recipe, imgURL: { uri: recipe.imgURL}});
+
+  //function that rerolls
+  const randomRecipe =  async () => {
+    const fetchedRecipe = await recipeServices.getRandomRecipe();
+    // console.log('this', newRecipe)
+    setNewRecipe({...fetchedRecipe, imgURL: { uri: fetchedRecipe.imgURL}});
+  }
+
   //routes
-  const toDetails = () => navigation.navigate('RecipeDetails');
+  const toDetails = () => navigation.navigate('RecipeDetails', { recipe: newRecipe, email: email, favCuisines: favCuisines });
   const reloadWithNewResult = () => {
-    navigation.navigate('Result');
+    randomRecipe()
   };
-  const toHome = () => navigation.navigate('Home');
+  const toHome = () => navigation.navigate('Home', {email: email, favCuisines: favCuisines});
   const toProfile = () => navigation.navigate('Profile');
 
   return (
@@ -22,8 +40,8 @@ export default function homePage({ navigation }) {
       <ImageBackground source={img} resizeMode='cover' style={styles.img}>
         <View style={styles.logo}>
           <Text style={styles.header}>Here's Your Dish!</Text>
-          <Text style={styles.dishTitle}>Greek Salad</Text>
-          <ImageBackground source={sampleImg} resizeMode='cover' style={styles.sampleImg} imageStyle={styles.image}></ImageBackground>
+          <Text style={styles.dishTitle}>{newRecipe.title}</Text>
+          <ImageBackground source={newRecipe.imgURL} resizeMode='cover' style={styles.sampleImg} imageStyle={styles.image}></ImageBackground>
         </View>
         <View style={styles.chooseButtons}>
           <GenericButton text={'Get Cooken!'} style={{marginTop:15}} onPress={toDetails}/>

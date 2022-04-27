@@ -7,7 +7,7 @@ const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.apps
 
 
 
-export default function profile({ navigation }) {
+export default function Profile({ navigation }) {
   const windowHeight = useWindowDimensions().height;
   // TODO should get user info from global state when login is pressed
   // const [email, setEmail] = useState(user.email)

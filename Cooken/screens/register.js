@@ -10,7 +10,7 @@ const baseURL = process.env.baseURL;
 
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
 
-export default function register({ navigation }) {
+export default function Register({ navigation }) {
   console.log(baseURL)
   const windowHeight = useWindowDimensions().height;
   const [email, setEmail] = useState('');
@@ -30,8 +30,8 @@ export default function register({ navigation }) {
   async function handleSubmit(e)  {
     e.preventDefault();
     const newUser = { email, password, username, favCuisines };
-    //TODO take out ip and replace with .env value
-    fetch(`http://192.168.1.117:3001/register`, {
+    //needs to be fetch('http://localIPaddress:PORT/endpoint')
+    fetch(`:3001/register`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(newUser)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   StyleSheet,
   Text,
@@ -16,16 +16,28 @@ import GenericButton from '../ButtonComponents/GenericButton';
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
 
 
-export default function login({ navigation }) {
+export default function Login({ navigation }) {
  const windowHeight = useWindowDimensions().height;
 
-//  const handleSubmit = () => {
-// //     checking if email exist with 'post' to verify,
-// //     then fill global context with user id, for home page to use then fill the rest, then navigate to home page
-//  }
-
   //routes
-  const loginPressHandler = () => navigation.navigate('Home')
+  const loginPressHandler = async (e) => {
+    // FETCH TO GET USER WITH SAME EMAIL FROM DB AND REPLACE CURRENT STATE WITH IT
+    e.preventDefault();
+    const typedEmail = { email };
+    //needs to be fetch('http://localIPaddress:PORT/endpoint')
+    let user = await  fetch(':3001/login', {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(typedEmail)
+    }).then((data) => data.json());
+    console.log(user)
+
+    navigation.navigate('Home', {
+      email: user.email, favCuisines: user.favCuisines
+    });
+    // setEmail('');
+    // setPassword('');
+  }
   const createAcctPressHandler = () => navigation.navigate('Register');
 
   const [email, setEmail] = useState('');
@@ -44,7 +56,7 @@ export default function login({ navigation }) {
               value={email}
               placeholder = 'Email'
             />
-            <TextInput style={styles.passwordInput}
+            <TextInput secureTextEntry={true} style={styles.passwordInput}
               onChangeText={(password) => setPassword(password)}
               value={password}
               placeholder = 'Password'
