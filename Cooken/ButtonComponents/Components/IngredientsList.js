@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
+console.log('hi');
 
 export default function IngredientsList({ name, amount }) {
   return (
