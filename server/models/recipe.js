@@ -8,7 +8,7 @@ const RecipeSchema = new mongoose.Schema(
     },
     imgURL: {
       type: String,
-      required: true,
+      required: false,
     },
     difficulty: {
       type: String,
@@ -16,27 +16,27 @@ const RecipeSchema = new mongoose.Schema(
     },
     serves: {
       type: Number,
-      required: true,
+      required: false,
     },
     ingredients:  {
     type: Array,
-    required: true,
+    required: false,
       ingredientAmount: {
         type: Number,
-        required: true,
+        required: false,
       },
       ingredientName: {
         type: String,
-        required: true,
+        required: false,
       },
     },
     instructions: {
       type: String,
-      required: true,
+      required: false,
     },
     cuisineTag: {
       type: String,
-      required: true,
+      required: false,
     }
   }
 );

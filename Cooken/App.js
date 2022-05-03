@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import Navigator from './routes/homeStack'
+import React from 'react';
+import Navigator from './routes/homeStack';
 
 //user Context provider here
 export const UserContext = React.createContext();
 
 const defaultUserState = {
   email: '',
-  password:'',
-  username:'',
+  password: '',
+  username: '',
   favCuisines: [],
 };
 

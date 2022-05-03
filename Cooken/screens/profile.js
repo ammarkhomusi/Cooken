@@ -1,6 +1,6 @@
-import { View, Text, ImageBackground, StyleSheet, TextInput, useWindowDimensions } from 'react-native'
-import React, { useState } from 'react'
-import GenericButton from '../ButtonComponents/GenericButton';
+import React from 'react';
+import { View, Text, ImageBackground, StyleSheet, TextInput, useWindowDimensions } from 'react-native';
+import { GenericButton } from '../ButtonComponents/GenericButton';
 import { CheckBox } from 'react-native-elements';
 
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
@@ -30,13 +30,13 @@ export default function Profile({ navigation }) {
             editable={false}
             // TODO
             // value={email}
-            />
+          />
            <TextInput
             style={styles.inputFields}
             editable={false}
             //TODO
             // value={username}
-            />
+          />
         </View>
         <View style={styles.checkBoxesContainer}>
           <CheckBox></CheckBox><Text style={styles.checkBoxText}>italian</Text>

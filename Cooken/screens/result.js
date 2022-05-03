@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet, ImageBackground, useWindowDimensions } from 'react-native'
 import React, { useState } from 'react';
-import GenericButton from '../ButtonComponents/GenericButton';
-import RouteButton from '../ButtonComponents/RouteButton';
+import { GenericButton } from '../ButtonComponents/GenericButton';
+//import { RouteButton } from '../ButtonComponents/RouteButton';
 import { recipeServices } from '../Services/recipeService';
 
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
-const sampleImg = {uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/greek-salad-3-1200.jpg?alt=media&token=1978a2df-c283-46b2-8754-73b233b21677'}
+//const sampleImg = {uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/greek-salad-3-1200.jpg?alt=media&token=1978a2df-c283-46b2-8754-73b233b21677'}
+
 //will be recipe.imgUrl
 export default function Results({ navigation, route }) {
   const  {recipe, email, favCuisines} = route.params;

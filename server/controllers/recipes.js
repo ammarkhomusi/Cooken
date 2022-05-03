@@ -27,14 +27,15 @@ const getRecipeByCuisine = async (req, res) => {
 const AddRecipe = async (req, res) => {
   try {
     const recipe = req.body
-    console.log(recipe);
     if(!recipe) {
       return res.status(400).send({ res: 'Missing Fields', error : true})
     }
     const newRecipe = await Recipe.create(recipe);
-    return res.status(201).send({ res: newRecipe, error: false})
+    
+    return res.status(201).send({ res: newRecipe, error: false })
   } catch (error) {
-    return res.status(500).send({ res: 'Internal Service Error', error: true})
+      console.log(error)
+    return res.status(500).send({ res: 'Internal Service Error', error: true })
   }
 }
 
