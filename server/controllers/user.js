@@ -4,9 +4,9 @@ const User = require('./../models/user');
 const createUser = async (req, res) => {
   console.log('I am here', req.body);
   const { email, password } = req.body;
-  const user = await User.findOne({ email: email});
+  const user = await User.findOne({ email: email });
   if(user) {
-    return res.status(409).send({error: '409', message: 'User already exists'});
+    return res.status(409).send({ error: '409', message: 'User already exists' });
   }
   try {
     if(password === '') {
