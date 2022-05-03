@@ -1,17 +1,20 @@
-import { View, Text, StyleSheet, ImageBackground, LogBox } from 'react-native'
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ImageBackground, LogBox } from 'react-native';
 import { GenericButton } from '../ButtonComponents/GenericButton';
-import { UserContext } from '../App';
+//import { UserContext } from '../App';
 import { recipeServices } from '../Services/recipeService';
 
-LogBox.ignoreLogs(['Non-serializable values were found in the navigation state'])
-const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
-const homeImg = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/Screenshot%20(70).png?alt=media&token=7bf3081e-d4f5-4865-a6bf-55e934ce3c84'}
+LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);
+
+const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'};
+
+const homeImg = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/Screenshot%20(70).png?alt=media&token=7bf3081e-d4f5-4865-a6bf-55e934ce3c84'};
 
 
 export default function HomePage({ navigation, route }) {
   const { email, favCuisines} = route.params;
-  console.log('this is params',route.params)
+  console.log('this is params', route.params)
+  
   const [recipe, setRecipe] = useState({});
   //function to generate random tag
   const randomRecipe =  async () => {
@@ -29,7 +32,7 @@ export default function HomePage({ navigation, route }) {
   //function to get tag recipe
   const tagRecipe = async () => {
     const tagRecipe = await recipeServices.getRecipeByCuisine(cuisineTag, 'any')
-    console.log('thisis tagrecipe', tagRecipe)
+    console.log('this is tag recipe', tagRecipe)
     setRecipe(tagRecipe)
     return tagRecipe;
   }
@@ -51,9 +54,6 @@ export default function HomePage({ navigation, route }) {
     // const res =  await randomRecipe()
     // navigation.navigate('Results', res)
   }
-
-
-
 
   return (
     <View style={styles.container}>

@@ -1,5 +1,5 @@
-import { View, Text, ImageBackground, StyleSheet, TextInput, useWindowDimensions } from 'react-native'
-import React, { useState } from 'react'
+import React from 'react';
+import { View, Text, ImageBackground, StyleSheet, TextInput, useWindowDimensions } from 'react-native';
 import { GenericButton } from '../ButtonComponents/GenericButton';
 import { CheckBox } from 'react-native-elements';
 
@@ -30,13 +30,13 @@ export default function Profile({ navigation }) {
             editable={false}
             // TODO
             // value={email}
-            />
+          />
            <TextInput
             style={styles.inputFields}
             editable={false}
             //TODO
             // value={username}
-            />
+          />
         </View>
         <View style={styles.checkBoxesContainer}>
           <CheckBox></CheckBox><Text style={styles.checkBoxText}>italian</Text>

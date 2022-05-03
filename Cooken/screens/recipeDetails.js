@@ -1,5 +1,5 @@
+import React from 'react'
 import { View, Text, ImageBackground, ScrollView, StyleSheet, useWindowDimensions } from 'react-native'
-import React, { useState } from 'react'
 import { IngredientsList } from '../ButtonComponents/Components/IngredientsList';
 import { GenericButton } from '../ButtonComponents/GenericButton';
 

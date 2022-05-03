@@ -5,13 +5,12 @@ import Checkbox from 'expo-checkbox';
 import { userService } from '../Services/userService';
 // require('dotenv').config()
 // import { userService } from '../Services/userService'
-
-const baseURL = process.env.baseURL;
+const { createUser } = userService;
 
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
 
 export default function Register({ navigation }) {
-  console.log(baseURL)
+
   const windowHeight = useWindowDimensions().height;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,17 +26,26 @@ export default function Register({ navigation }) {
 
   const backToLogin = () => navigation.navigate('Login');
 
-  async function handleSubmit(e)  {
+    async function handleSubmit(e)  {
     e.preventDefault();
     const newUser = { email, password, username, favCuisines };
-    //needs to be fetch('http://localIPaddress:PORT/endpoint')
-    fetch(`:3001/register`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(newUser)
-    }).then(() => {
-      console.log(newUser)
-    })
+    console.log({newUser});
+
+    await createUser(newUser);
+
+    // needs to be fetch('http://localIPaddress:PORT/endpoint')
+
+    // fetch(`https://97.120.50.204:3001/register`, {
+    //   method: 'POST',
+    //   headers: {Accept: 'application/json',
+    //   'Content-Type': 'application/json'},
+    //   body: JSON.stringify(newUser)
+    // }).then((res) => {
+    //   console.log(res)
+    //   console.log({newUser})
+    // }).catch((error) => {
+    //     console.log(error)
+    // })
     setEmail('');
     setPassword('');
     setUsername('');
@@ -49,7 +57,7 @@ export default function Register({ navigation }) {
     setMexicanIsChecked(false);
     setIndianIsChecked(false);
     navigation.navigate('Login');
-    }
+  }
     //checkbox add to favecuisine array
     const saveCheck = (obj) => {
       if(!obj.checked) {
@@ -92,41 +100,46 @@ export default function Register({ navigation }) {
               value={italianIsChecked.checked}
               onValueChange={(e) => {
                 setItalianIsChecked({...italianIsChecked, checked: e})
-                saveCheck(italianIsChecked)
-            }}></Checkbox><Text style={styles.checkBoxText}>italian</Text>
+                saveCheck(italianIsChecked)}}>
+            </Checkbox>
+            <Text style={styles.checkBoxText}>italian</Text>
             <Checkbox
               value={greekIsChecked.checked}
               onValueChange={(e) => {
                 setGreekIsChecked({...greekIsChecked, checked: e})
-                saveCheck(greekIsChecked)
-            }}>
-            </Checkbox><Text style={styles.checkBoxText}>greek</Text>
+                saveCheck(greekIsChecked)}}>
+            </Checkbox>
+            <Text style={styles.checkBoxText}>greek</Text>
             <Checkbox
               value={americanIsChecked.checked}
               onValueChange={(e) => {
                 setAmericanIsChecked({...americanIsChecked, checked: e})
-                saveCheck(americanIsChecked)
-              }}></Checkbox><Text style={styles.checkBoxText}>american</Text>
+                saveCheck(americanIsChecked)}}>
+            </Checkbox>
+            <Text style={styles.checkBoxText}>american</Text>
           </View>
           <View style={styles.checkBoxesContainer}>
             <Checkbox
               value={chineseIsChecked.checked}
               onValueChange={(e) => {
                 setChineseIsChecked({...chineseIsChecked, checked: e})
-                saveCheck(chineseIsChecked)
-              }}></Checkbox><Text style={styles.checkBoxText}>chinese</Text>
+                saveCheck(chineseIsChecked)}}>
+            </Checkbox>
+            <Text style={styles.checkBoxText}>chinese</Text>
             <Checkbox
               value={mexicanIsChecked.checked}
               onValueChange={(e) => {
                 setMexicanIsChecked({...mexicanIsChecked, checked: e})
-                saveCheck(mexicanIsChecked)
-              }}></Checkbox><Text style={styles.checkBoxText}>mexican</Text>
+                saveCheck(mexicanIsChecked)}}>
+            </Checkbox>
+            <Text style={styles.checkBoxText}>mexican</Text>
             <Checkbox
               value={indianIsChecked.checked}
               onValueChange={(e) => {
                 setIndianIsChecked({...indianIsChecked, checked: e})
-                saveCheck(indianIsChecked)
-              }}></Checkbox><Text style={styles.checkBoxText}>indian</Text>
+                saveCheck(indianIsChecked)}}>
+            </Checkbox>
+            <Text style={styles.checkBoxText}>indian</Text>
           </View>
           <View style={styles.buttons}>
             <GenericButton text={'Submit Account Details'} onPress={handleSubmit}/>

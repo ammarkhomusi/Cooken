@@ -19,14 +19,15 @@ export default function Login({ navigation }) {
  const windowHeight = useWindowDimensions().height;
 
   //routes
-  const loginPressHandler = async (e) => {
+  const loginPressHandler = (e) => {
     // FETCH TO GET USER WITH SAME EMAIL FROM DB AND REPLACE CURRENT STATE WITH IT
     e.preventDefault();
     const typedEmail = { email };
     //needs to be fetch('http://localIPaddress:PORT/endpoint')
-    let user = await  fetch(':3001/login', {
+    let user = fetch(`https://97.120.50.204:3001/login`, {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
+      headers: {Accept: 'application/json',
+      "Content-Type": "application/json"},
       body: JSON.stringify(typedEmail)
     }).then((data) => data.json());
     console.log(user)

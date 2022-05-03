@@ -8,7 +8,6 @@ interface Props {
 }
 
 export const GenericButton: React.FC<Props> = ({ text, onPress, style }) => {
-    console.log(style)
     const content = (
     <View style={[styles.button, style]}>
       <Text style={styles.text}>{text}</Text>
