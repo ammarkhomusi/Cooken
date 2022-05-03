@@ -1,33 +1,45 @@
-import { View, Text,ImageBackground, ScrollView, StyleSheet, useWindowDimensions } from 'react-native'
-import React, { useState} from 'react'
-import IngredientsList from '../ButtonComponents/Components/IngredientsList';
-import GenericButton from '../ButtonComponents/GenericButton';
+import { View, Text, ImageBackground, ScrollView, StyleSheet, useWindowDimensions } from 'react-native'
+import React, { useState } from 'react'
+import { IngredientsList } from '../ButtonComponents/Components/IngredientsList';
+import { GenericButton } from '../ButtonComponents/GenericButton';
 
 // const sampleImg = {uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/greek-salad-3-1200.jpg?alt=media&token=1978a2df-c283-46b2-8754-73b233b21677'}
 //{...recipe, imgUrl: {uri : recipe.imgURL}}
 
-export default function RecipeDetails({ navigation , route }) {
-  const { recipe, email, favCuisines } = route.params
+// interface Item {
+//     ingredientName: string;
+//     ingredientAmount: number;
+// }
+
+// interface Props {
+//     navigation: string;
+//     route: string;
+// }
+
+export const RecipeDetails = ({ navigation, route }) => {
+  // const { recipe, email, favCuisines } = route.params
+  console.log('navigation', navigation);
   console.log('recipe i ndetails', recipe)
+
   //routes
   const toHome = () => navigation.navigate('Home', { email: email, favCuisines: favCuisines});
   const toProfile = () => navigation.navigate('Profile')
   const windowHeight = useWindowDimensions().height;
 
-
   return (
     <ScrollView style={styles.container}>
       <View style={[styles.mainContainer, {minHeight: Math.round(windowHeight)}]} >
       <ImageBackground source={recipe.imgURL} resizeMode='cover' style={styles.sampleImg} imageStyle={styles.image}></ImageBackground>
-      <View styles={styles.recipeTitleView}>
+      <View style={styles.recipeTitleView}>
         <Text style={styles.recipeTitle}>{recipe.title}</Text>
       <View style={styles.cuisineTagContainer}>
-        <Text style={styles.cuisineTag}>tags:</Text><Text style={styles.cuisineTagText}>"{recipe.cuisineTag}"</Text>
+        <Text style={styles.cuisineTag}>tags:</Text>
+        <Text style={styles.cuisineTagText}>"{recipe.cuisineTag}"</Text>
       </View>
       </View>
       <View style={styles.ingredients}>
         {recipe.ingredients.map((item, index) => {
-          return <IngredientsList name={item.ingredientName} amount={item.ingredientAmount} key={index} />
+        return <IngredientsList name={item.ingredientName} amount={item.ingredientAmount} key={index} />
         })}
 
         {/* will map through recipe.ingredients[] */}

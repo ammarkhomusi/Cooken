@@ -5,7 +5,7 @@ import Login from '../screens/login';
 import Profile from '../screens/profile';
 import Register from '../screens/register';
 import Results from '../screens/result';
-import RecipeDetails from '../screens/recipeDetails';
+import { RecipeDetails } from '../screens/recipeDetails';
 
 const Stack = createNativeStackNavigator();
 

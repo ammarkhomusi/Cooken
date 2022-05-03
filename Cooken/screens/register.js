@@ -1,6 +1,6 @@
 import { View, Text, TextInput, ImageBackground, StyleSheet, useWindowDimensions, TouchableWithoutFeedback, Keyboard} from 'react-native'
 import React, { useState } from 'react'
-import GenericButton from '../ButtonComponents/GenericButton';
+import { GenericButton } from '../ButtonComponents/GenericButton';
 import Checkbox from 'expo-checkbox';
 import { userService } from '../Services/userService';
 // require('dotenv').config()

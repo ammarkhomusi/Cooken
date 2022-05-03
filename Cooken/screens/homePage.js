@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, ImageBackground, LogBox } from 'react-native'
 import React, { useState, useContext, useEffect } from 'react';
-import GenericButton from '../ButtonComponents/GenericButton';
+import { GenericButton } from '../ButtonComponents/GenericButton';
 import { UserContext } from '../App';
 import { recipeServices } from '../Services/recipeService';
 

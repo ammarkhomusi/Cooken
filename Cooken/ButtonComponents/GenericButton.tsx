@@ -1,8 +1,15 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React from 'react';
 
-export default function GenericButton({ text, onPress, style }) {
-  const content = (
+interface Props {
+    text: string;
+    onPress(): void;
+    style: {};
+}
+
+export const GenericButton: React.FC<Props> = ({ text, onPress, style }) => {
+    console.log(style)
+    const content = (
     <View style={[styles.button, style]}>
       <Text style={styles.text}>{text}</Text>
     </View>

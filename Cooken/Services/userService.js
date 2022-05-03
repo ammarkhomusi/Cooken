@@ -1,4 +1,4 @@
-const baseUrl = process.env.baseURL;
+const baseUrl = process.env.baseURL || 'http://localhost:3001';
 
 const createUser = (user) => {
   return fetch(`${baseUrl}/register` , {

@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, ImageBackground, useWindowDimensions } from 'react-native'
 import React, { useState } from 'react';
-import GenericButton from '../ButtonComponents/GenericButton';
-import RouteButton from '../ButtonComponents/RouteButton';
+import { GenericButton } from '../ButtonComponents/GenericButton';
+import { RouteButton } from '../ButtonComponents/RouteButton';
 import { recipeServices } from '../Services/recipeService';
 
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
