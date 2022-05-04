@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import { NavigationScreenProp } from 'react-navigation';
 import { GenericButton } from '../ButtonComponents/GenericButton';
 //import { UserContext } from '../App';
 import { recipeServices } from '../Services/recipeService';
@@ -10,11 +11,32 @@ const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.apps
 
 const homeImg = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/Screenshot%20(70).png?alt=media&token=7bf3081e-d4f5-4865-a6bf-55e934ce3c84'};
 
+interface Route {
+    key: string;
+    name: string;
+    params: {
+        email: string;
+        favCuisines: string[]
+    };
+    path: string | undefined
+}
 
-export default function HomePage({ navigation, route }) {
+export default function HomePage ({ navigation, route }: { navigation: NavigationScreenProp<any, any>, route: Route}) {
   const { email, favCuisines} = route.params;
-  console.log('this is params', route.params)
   
+//   ROUTE Object {
+//     "key": "Home-QysVaJa2PbqLIiCR1Dmpu",
+//     "name": "Home",
+//     "params": Object {
+//       "email": "H",
+//       "favCuisines": Array [
+//         "american",
+//         "indian",
+//       ],
+//     },
+//     "path": undefined,
+//   }
+
   const [recipe, setRecipe] = useState({});
   //function to generate random tag
   const randomRecipe =  async () => {
@@ -22,12 +44,12 @@ export default function HomePage({ navigation, route }) {
     console.log('should be empty', recipe)
     console.log('new recipe', newRecipe)
     setRecipe(newRecipe);
-    console.log('this should be new recipe',recipe)
+    console.log('this should be new recipe', recipe)
   }; // surprise me button
 
   //function to get random cuisinetag
   const cuisineTag = favCuisines[Math.floor(Math.random()*favCuisines.length)]
-  console.log('this is random cuisine tag',cuisineTag);
+  console.log('this is random cuisine tag', cuisineTag);
 
   //function to get tag recipe
   const tagRecipe = async () => {
@@ -38,7 +60,7 @@ export default function HomePage({ navigation, route }) {
   }
 
   //routes
-  const toProfile = () => navigation.navigate('Profile',{});
+  const toProfile = () => navigation.navigate('Profile', {});
   const toLogin = () => navigation.navigate('Login', { email: email, favCuisines: favCuisines});
   //on get recipe with tags
   const toTagResult =  async () => {
