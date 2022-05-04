@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, ImageBackground, ScrollView, StyleSheet, useWindowDimensions } from 'react-native'
 import { IngredientsList } from '../ButtonComponents/Components/IngredientsList';
 import { GenericButton } from '../ButtonComponents/GenericButton';
-
+ 
 // const sampleImg = {uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/greek-salad-3-1200.jpg?alt=media&token=1978a2df-c283-46b2-8754-73b233b21677'}
 //{...recipe, imgUrl: {uri : recipe.imgURL}}
 

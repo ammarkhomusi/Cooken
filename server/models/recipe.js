@@ -1,5 +1,5 @@
 const mongoose = require('./index');
-
+ 
 const RecipeSchema = new mongoose.Schema(
   {
     title: {

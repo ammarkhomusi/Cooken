@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, GestureResponderEvent } from 'react-native';
 import React from 'react';
-
+ 
 interface Props {
     text: string;
     onPress: (e: GestureResponderEvent) => void;

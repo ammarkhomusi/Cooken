@@ -1,5 +1,5 @@
 const mongoose = require('./index');
-
+ 
 const UserSchema = new mongoose.Schema(
   {
     email: {

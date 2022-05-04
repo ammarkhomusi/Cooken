@@ -23,7 +23,7 @@ const createUser = async (req, res) => {
     res.status(400).send({ error, message: 'Could not create user'})
   }
 };
-
+ 
 const loginUser = async (req, res) => {
   try {
     const { email } = req.body;

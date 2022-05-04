@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ImageBackground, LogBox } from 'react-native';
 import { GenericButton } from '../ButtonComponents/GenericButton';
 //import { UserContext } from '../App';
 import { recipeServices } from '../Services/recipeService';
-
+ 
 //LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);
 
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'};
@@ -49,7 +49,7 @@ export default function HomePage({ navigation, route }) {
     useEffect(() => {
         randomRecipe()
     }, [])
-    
+
   //on surprise me click
   // THIS FN ISN'T PASSING DATA
   const toRandomResult = async () =>  {
