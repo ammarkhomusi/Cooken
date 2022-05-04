@@ -27,8 +27,8 @@ const createUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const { email } = req.body;
-    const user = await User.findOne({ email: email});
-    console.log(user)
+    const user = await User.findOne({ email: email });
+    console.log('user in controllers', user)
     res.status(200).send(user);
   } catch (error) {
    res.status(401).send({ error: '401', message: 'Username or password is incorrect'});

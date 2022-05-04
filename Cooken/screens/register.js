@@ -1,10 +1,9 @@
-import { View, Text, TextInput, ImageBackground, StyleSheet, useWindowDimensions, TouchableWithoutFeedback, Keyboard} from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, TextInput, ImageBackground, StyleSheet, useWindowDimensions, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import React, { useState } from 'react';
 import { GenericButton } from '../ButtonComponents/GenericButton';
 import Checkbox from 'expo-checkbox';
 import { userService } from '../Services/userService';
-// require('dotenv').config()
-// import { userService } from '../Services/userService'
+// import { userService } from '../Services/userService;
 const { createUser } = userService;
 
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
@@ -29,23 +28,23 @@ export default function Register({ navigation }) {
     async function handleSubmit(e)  {
     e.preventDefault();
     const newUser = { email, password, username, favCuisines };
-    console.log({newUser});
+    // console.log({newUser});
 
     await createUser(newUser);
 
     // needs to be fetch('http://localIPaddress:PORT/endpoint')
 
-    // fetch(`https://97.120.50.204:3001/register`, {
-    //   method: 'POST',
-    //   headers: {Accept: 'application/json',
-    //   'Content-Type': 'application/json'},
-    //   body: JSON.stringify(newUser)
-    // }).then((res) => {
-    //   console.log(res)
-    //   console.log({newUser})
-    // }).catch((error) => {
-    //     console.log(error)
-    // })
+    fetch(`http://192.168.5.7:3001/register`, {
+      method: 'POST',
+      headers: {Accept: 'application/json',
+      'Content-Type': 'application/json'},
+      body: JSON.stringify(newUser)
+    }).then((res) => {
+      //console.log('res', res)
+      //console.log('new user', {newUser})
+    }).catch((error) => {
+        console.log(error)
+    })
     setEmail('');
     setPassword('');
     setUsername('');

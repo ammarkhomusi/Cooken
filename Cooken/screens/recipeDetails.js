@@ -17,9 +17,9 @@ import { GenericButton } from '../ButtonComponents/GenericButton';
 // }
 
 export const RecipeDetails = ({ navigation, route }) => {
-  // const { recipe, email, favCuisines } = route.params
-  console.log('navigation', navigation);
-  console.log('recipe i ndetails', recipe)
+    const { recipe, email, favCuisines } = route.params
+  //console.log('navigation', navigation);
+  //console.log('recipe in details', recipe)
 
   //routes
   const toHome = () => navigation.navigate('Home', { email: email, favCuisines: favCuisines});

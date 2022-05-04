@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavigationScreenProp } from 'react-navigation';
 import {
   StyleSheet,
   Text,
@@ -7,31 +8,33 @@ import {
   ImageBackground,
   useWindowDimensions,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  GestureResponderEvent
  } from 'react-native';
-
 import { GenericButton } from '../ButtonComponents/GenericButton';
 
-const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
+const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1' }
 
-
-export default function Login({ navigation }) {
+export default function Login ({ navigation }: { navigation: NavigationScreenProp<any, any> }) {
  const windowHeight = useWindowDimensions().height;
 
-  //routes
-  const loginPressHandler = (e) => {
+ const [email, setEmail] = useState('');
+ const [password, setPassword] = useState('');
+
+  const loginPressHandler = async (e: GestureResponderEvent) => {
     // FETCH TO GET USER WITH SAME EMAIL FROM DB AND REPLACE CURRENT STATE WITH IT
     e.preventDefault();
-    const typedEmail = { email };
+    const typedEmail = { email }; // where is email coming from??
     //needs to be fetch('http://localIPaddress:PORT/endpoint')
-    let user = fetch(`https://97.120.50.204:3001/login`, {
+    let user = await fetch(`http://192.168.5.7:3001/login`, {
       method: "POST",
       headers: {Accept: 'application/json',
       "Content-Type": "application/json"},
       body: JSON.stringify(typedEmail)
     }).then((data) => data.json());
-    console.log(user)
+    console.log('USER', user)
 
+    // user is a promise here. Why?
     navigation.navigate('Home', {
       email: user.email, favCuisines: user.favCuisines
     });
@@ -40,8 +43,7 @@ export default function Login({ navigation }) {
   }
   const createAcctPressHandler = () => navigation.navigate('Register');
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('')
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={[styles.container, {minHeight: Math.round(windowHeight)}]} >
