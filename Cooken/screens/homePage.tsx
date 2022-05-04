@@ -22,8 +22,9 @@ interface Route {
 }
 
 export default function HomePage ({ navigation, route }: { navigation: NavigationScreenProp<any, any>, route: Route}) {
-  const { email, favCuisines} = route.params;
-  
+  const { email, favCuisines } = route.params;
+
+  const [recipe, setRecipe] = useState<{}>({});
 //   ROUTE Object {
 //     "key": "Home-QysVaJa2PbqLIiCR1Dmpu",
 //     "name": "Home",
@@ -37,24 +38,18 @@ export default function HomePage ({ navigation, route }: { navigation: Navigatio
 //     "path": undefined,
 //   }
 
-  const [recipe, setRecipe] = useState({});
   //function to generate random tag
   const randomRecipe =  async () => {
-    const newRecipe = await recipeServices.getRandomRecipe();
-    console.log('should be empty', recipe)
-    console.log('new recipe', newRecipe)
+    const newRecipe: {} = await recipeServices.getRandomRecipe();
     setRecipe(newRecipe);
-    console.log('this should be new recipe', recipe)
   }; // surprise me button
 
   //function to get random cuisinetag
   const cuisineTag = favCuisines[Math.floor(Math.random()*favCuisines.length)]
-  console.log('this is random cuisine tag', cuisineTag);
 
   //function to get tag recipe
   const tagRecipe = async () => {
     const tagRecipe = await recipeServices.getRecipeByCuisine(cuisineTag, 'any')
-    console.log('this is tag recipe', tagRecipe)
     setRecipe(tagRecipe)
     return tagRecipe;
   }
@@ -65,15 +60,12 @@ export default function HomePage ({ navigation, route }: { navigation: Navigatio
   //on get recipe with tags
   const toTagResult =  async () => {
     const res = await tagRecipe()
-    console.log('homepage res', res)
-    navigation.navigate('Results',  {res: res, email: email, favCuisines: favCuisines, random: false})};
+    navigation.navigate('Results',  {recipe: res, email: email, favCuisines: favCuisines, random: false})};
 
     useEffect(() => {
         randomRecipe()
     }, [])
 
-  //on surprise me click
-  // THIS FN ISN'T PASSING DATA
   const toRandomResult = async () =>  {
     randomRecipe()
     navigation.navigate('Results', {recipe: recipe, email: email, favCuisines: favCuisines, random: true })

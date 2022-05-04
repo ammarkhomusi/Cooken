@@ -1,5 +1,6 @@
-import React from 'react'
-import { View, Text, ImageBackground, ScrollView, StyleSheet, useWindowDimensions } from 'react-native'
+import React from 'react';
+import { View, Text, ImageBackground, ScrollView, StyleSheet, useWindowDimensions } from 'react-native';
+import { NavigationScreenProp } from 'react-navigation';
 import { IngredientsList } from '../ButtonComponents/Components/IngredientsList';
 import { GenericButton } from '../ButtonComponents/GenericButton';
  
@@ -16,7 +17,7 @@ import { GenericButton } from '../ButtonComponents/GenericButton';
 //     route: string;
 // }
 
-export const RecipeDetails = ({ navigation, route }) => {
+export const RecipeDetails = ({ navigation, route }: { navigation: NavigationScreenProp<any, any>, route: Route}) => {
     const { recipe, email, favCuisines } = route.params
   //console.log('navigation', navigation);
   //console.log('recipe in details', recipe)
