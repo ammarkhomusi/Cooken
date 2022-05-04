@@ -1,5 +1,6 @@
-import { View, Text, TextInput, ImageBackground, StyleSheet, useWindowDimensions, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import React, { useState } from 'react';
+import { View, Text, TextInput, ImageBackground, StyleSheet, useWindowDimensions, TouchableWithoutFeedback, Keyboard, GestureResponderEvent } from 'react-native';
+import { NavigationScreenProp } from 'react-navigation';
 import { GenericButton } from '../ButtonComponents/GenericButton';
 import Checkbox from 'expo-checkbox';
 import { userService } from '../Services/userService';
@@ -8,13 +9,13 @@ const { createUser } = userService;
  
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
 
-export default function Register({ navigation }) {
+export default function Register ({ navigation }: { navigation: NavigationScreenProp<any, any> }) {
 
   const windowHeight = useWindowDimensions().height;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-  const [favCuisines, setFavCuisines] = useState([])
+  const [favCuisines, setFavCuisines] = useState<string[]>([]);
   //checkbox states
   const [italianIsChecked, setItalianIsChecked] = useState({ checked: false , value: 'italian'});
   const [greekIsChecked, setGreekIsChecked] = useState({checked: false, value: 'greek'});
@@ -25,7 +26,7 @@ export default function Register({ navigation }) {
 
   const backToLogin = () => navigation.navigate('Login');
 
-    async function handleSubmit(e)  {
+    async function handleSubmit( e: GestureResponderEvent )  {
     e.preventDefault();
     const newUser = { email, password, username, favCuisines };
     // console.log({newUser});
@@ -49,16 +50,17 @@ export default function Register({ navigation }) {
     setPassword('');
     setUsername('');
     setFavCuisines([]);
-    setItalianIsChecked(false);
-    setGreekIsChecked(false);
-    setAmericanIsChecked(false);
-    setChineseIsChecked(false);
-    setMexicanIsChecked(false);
-    setIndianIsChecked(false);
+    setItalianIsChecked({checked: false, value: 'italian'});
+    setGreekIsChecked({checked: false, value: 'greek'});
+    setAmericanIsChecked({checked: false, value: 'american'});
+    setChineseIsChecked({checked: false, value: 'chinese'});
+    setMexicanIsChecked({checked: false, value: 'mexican'});
+    setIndianIsChecked({checked: false, value:'indian'});
     navigation.navigate('Login');
   }
     //checkbox add to favecuisine array
-    const saveCheck = (obj) => {
+    const saveCheck = (obj: {checked: boolean, value: string}) => {
+        console.log('saveCheck obj', obj);
       if(!obj.checked) {
         setFavCuisines([...favCuisines, obj.value])
       } else {

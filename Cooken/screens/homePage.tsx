@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ImageBackground, LogBox } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import { GenericButton } from '../ButtonComponents/GenericButton';
 //import { UserContext } from '../App';
 import { recipeServices } from '../Services/recipeService';
