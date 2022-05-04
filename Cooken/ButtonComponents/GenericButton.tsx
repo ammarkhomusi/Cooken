@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ViewStyle, GestureResponderEvent } from 'react-native';
 import React from 'react';
-
+ 
 interface Props {
     text: string;
-    onPress(): void;
-    style: {};
+    onPress: (e: GestureResponderEvent) => void;
+    style?: ViewStyle;
 }
 
 export const GenericButton: React.FC<Props> = ({ text, onPress, style }) => {
@@ -16,7 +16,6 @@ export const GenericButton: React.FC<Props> = ({ text, onPress, style }) => {
   return (
     <TouchableOpacity onPress={onPress}>{content}</TouchableOpacity>
   )
-
 }
 
 const styles = StyleSheet.create({

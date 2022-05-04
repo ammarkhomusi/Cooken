@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const userController = require('./controllers/user');
 const recipeController = require('./controllers/recipes');
-
+ 
 //recipe routes//
 //gets random "wildcard" recipe
 router.get('/recipe', recipeController.getRandomRecipe);

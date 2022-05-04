@@ -1,5 +1,5 @@
 const Recipe = require('../models/recipe');
-
+ 
 const getRandomRecipe = async (req, res) => {
   try {
     const recipe = await Recipe.aggregate([{$sample:{size:1}}]);

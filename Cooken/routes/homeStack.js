@@ -9,7 +9,7 @@ import Results from '../screens/result';
 import { RecipeDetails } from '../screens/recipeDetails';
 
 const Stack = createNativeStackNavigator();
-
+ 
 function App() {
   return (
     <NavigationContainer>
