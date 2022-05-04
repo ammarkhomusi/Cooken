@@ -16,6 +16,7 @@ export default function Register ({ navigation }: { navigation: NavigationScreen
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [favCuisines, setFavCuisines] = useState<string[]>([]);
+
   //checkbox states
   const [italianIsChecked, setItalianIsChecked] = useState({ checked: false , value: 'italian'});
   const [greekIsChecked, setGreekIsChecked] = useState({checked: false, value: 'greek'});
@@ -58,6 +59,7 @@ export default function Register ({ navigation }: { navigation: NavigationScreen
     setIndianIsChecked({checked: false, value:'indian'});
     navigation.navigate('Login');
   }
+  
     //checkbox add to favecuisine array
     const saveCheck = (obj: {checked: boolean, value: string}) => {
         console.log('saveCheck obj', obj);

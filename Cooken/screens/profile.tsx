@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, ImageBackground, StyleSheet, TextInput, useWindowDimensions } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet, TextInput, useWindowDimensions, GestureResponderEvent } from 'react-native';
+import { NavigationScreenProp } from 'react-navigation';
 import { GenericButton } from '../ButtonComponents/GenericButton';
 import { CheckBox } from 'react-native-elements';
  
@@ -7,7 +8,7 @@ const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.apps
 
 
 
-export default function Profile({ navigation }) {
+export default function Profile({ navigation}: { navigation: NavigationScreenProp<any, any>}) {
   const windowHeight = useWindowDimensions().height;
   // TODO should get user info from global state when login is pressed
   // const [email, setEmail] = useState(user.email)
@@ -49,7 +50,7 @@ export default function Profile({ navigation }) {
           <CheckBox></CheckBox><Text style={styles.checkBoxText}>indian</Text>
         </View>
         <View style={styles.buttons}>
-          <GenericButton text={'Edit Account Info'}/>
+          <GenericButton text={'Edit Account Info'} onPress={() => {}}/>
           <GenericButton text={'Save Changes'} onPress={toHome}/>
         </View>
       </ImageBackground>

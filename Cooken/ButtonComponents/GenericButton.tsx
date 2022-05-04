@@ -4,7 +4,7 @@ import React from 'react';
 interface Props {
     text: string;
     onPress: (e: GestureResponderEvent) => void;
-    style?: ViewStyle;
+    style?: ViewStyle
 }
 
 export const GenericButton: React.FC<Props> = ({ text, onPress, style }) => {
