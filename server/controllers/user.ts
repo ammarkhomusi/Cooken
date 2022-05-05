@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt');
-const User = require('./../models/user');
+import { Request, Response } from 'express';
+import User from './../models/user';
 
-const createUser = async (req, res) => {
+export const createUser = async (req: Request, res: Response) => {
   console.log('I am here', req.body);
   const { email, password } = req.body;
   const user = await User.findOne({ email: email });
@@ -24,7 +25,7 @@ const createUser = async (req, res) => {
   }
 };
  
-const loginUser = async (req, res) => {
+export const loginUser = async (req: Request, res: Response) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email: email });
@@ -35,7 +36,7 @@ const loginUser = async (req, res) => {
   }
 };
 
-const profileInfo = async (req, res) => {
+export const profileInfo = async (req: any, res: Response) => {
   try {
     const { _id, userName, email, favCuisines } = req.user;
     const user = { _id, userName, email, favCuisines };
@@ -45,16 +46,16 @@ const profileInfo = async (req, res) => {
   }
 };
 
-const logoutUser = (req, res) => {
-  req.session.destroy((error) => {
-    if(error) {
-      res
-        .status(500)
-        .send({ error, message: 'Could not logout, please try again' });
-    } else {
-      res.clearCookie()
-    }
-  });
-};
+// const logoutUser = (req: any, res: Response) => {
+//   req.session.destroy((error) => {
+//     if(error) {
+//       res
+//         .status(500)
+//         .send({ error, message: 'Could not logout, please try again' });
+//     } else {
+//       res.clearCookie()
+//     }
+//   });
+// };
 
-module.exports = { createUser, loginUser, profileInfo, logoutUser }
+// module.exports = { logoutUser }
