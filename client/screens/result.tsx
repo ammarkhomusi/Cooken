@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ImageBackground, useWindowDimensions } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
 import { GenericButton } from '../ButtonComponents/GenericButton';
-// import { RouteButton } from '../ButtonComponents/RouteButton';
 import { recipeServices } from '../Services/recipeService';
 
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
-//const sampleImg = {uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/greek-salad-3-1200.jpg?alt=media&token=1978a2df-c283-46b2-8754-73b233b21677'}
 
 interface Route {
     key: string;
@@ -22,7 +20,6 @@ interface Route {
     path: string | undefined
 }
 
-//will be recipe.imgUrl
 export default function Results({ navigation, route }: { navigation: NavigationScreenProp<any, any>, route: Route}) {
     const {recipe, email, favCuisines} = route.params;
 
@@ -30,14 +27,14 @@ export default function Results({ navigation, route }: { navigation: NavigationS
 
     const windowHeight = useWindowDimensions().height;
 
-    //function that rerolls
+    // function that rerolls
     const randomRecipe =  async () => {
         const fetchedRecipe = await recipeServices.getRandomRecipe();
 
         setNewRecipe({...fetchedRecipe, imgURL: { uri: fetchedRecipe.imgURL}});
     }
 
-    //routes
+    // routes
     const toDetails = () => navigation.navigate('RecipeDetails', { recipe: newRecipe, email: email, favCuisines: favCuisines });
     
     const reloadWithNewResult = () => {

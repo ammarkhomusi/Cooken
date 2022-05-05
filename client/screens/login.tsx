@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
 import { NavigationScreenProp } from 'react-navigation';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  ImageBackground,
-  useWindowDimensions,
-  TouchableWithoutFeedback,
-  Keyboard,
-  GestureResponderEvent
+import { StyleSheet, Text, View, TextInput, ImageBackground, useWindowDimensions, TouchableWithoutFeedback, Keyboard, GestureResponderEvent
  } from 'react-native';
 import { GenericButton } from '../ButtonComponents/GenericButton';
 
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1' }
 
-// added typescript
 export default function Login ({ navigation }: { navigation: NavigationScreenProp<any, any> }) {
  const windowHeight = useWindowDimensions().height;
 
@@ -23,10 +13,9 @@ export default function Login ({ navigation }: { navigation: NavigationScreenPro
  const [password, setPassword] = useState('');
 
   const loginPressHandler = async (e: GestureResponderEvent) => {
-    // FETCH TO GET USER WITH SAME EMAIL FROM DB AND REPLACE CURRENT STATE WITH IT
     e.preventDefault();
-    const typedEmail = { email }; // where is email coming from??
-    //needs to be fetch('http://localIPaddress:PORT/endpoint')
+    const typedEmail = { email };
+    
     let user = await fetch(`http://192.168.5.7:3001/login`, {
       method: "POST",
       headers: {Accept: 'application/json',
@@ -35,15 +24,11 @@ export default function Login ({ navigation }: { navigation: NavigationScreenPro
     }).then((data) => data.json());
     console.log('USER', user)
 
-    // user is a promise here. Why?
     navigation.navigate('Home', {
       email: user.email, favCuisines: user.favCuisines
     });
-    // setEmail('');
-    // setPassword('');
   }
   const createAcctPressHandler = () => navigation.navigate('Register');
-
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>

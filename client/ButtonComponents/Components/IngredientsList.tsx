@@ -16,15 +16,6 @@ export const IngredientsList: React.FC<Props> = ({ name, amount }) => {
 }
 
 
-// export default function IngredientsList ({ name: { Props.name }, amount: { Props.amount }}) {
-//   return (
-//     <View style={styles.ingredientsContainer}>
-//       <Text style={styles.ingredientText}>{amount}</Text>
-//       <Text style={styles.ingredientText}>{name}</Text>
-//     </View>
-//   )
-// }
-
 const styles = StyleSheet.create({
   ingredientsContainer:{
     flex:.1,

@@ -25,39 +25,28 @@ export default function HomePage ({ navigation, route }: { navigation: Navigatio
   const { email, favCuisines } = route.params;
 
   const [recipe, setRecipe] = useState<{}>({});
-//   ROUTE Object {
-//     "key": "Home-QysVaJa2PbqLIiCR1Dmpu",
-//     "name": "Home",
-//     "params": Object {
-//       "email": "H",
-//       "favCuisines": Array [
-//         "american",
-//         "indian",
-//       ],
-//     },
-//     "path": undefined,
-//   }
 
-  //function to generate random tag
+  // generate random tag
   const randomRecipe =  async () => {
     const newRecipe: {} = await recipeServices.getRandomRecipe();
     setRecipe(newRecipe);
-  }; // surprise me button
+  };
 
-  //function to get random cuisinetag
+  // get random cuisinetag
   const cuisineTag = favCuisines[Math.floor(Math.random()*favCuisines.length)]
 
-  //function to get tag recipe
+  // get tag recipe
   const tagRecipe = async () => {
     const tagRecipe = await recipeServices.getRecipeByCuisine(cuisineTag, 'any')
     setRecipe(tagRecipe)
     return tagRecipe;
   }
 
-  //routes
+  // routes
   const toProfile = () => navigation.navigate('Profile', {});
   const toLogin = () => navigation.navigate('Login', { email: email, favCuisines: favCuisines});
-  //on get recipe with tags
+  
+  // on get recipe with tags
   const toTagResult =  async () => {
     const res = await tagRecipe()
     navigation.navigate('Results',  {recipe: res, email: email, favCuisines: favCuisines, random: false})};

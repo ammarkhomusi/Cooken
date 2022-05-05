@@ -3,9 +3,6 @@ import { View, Text, ImageBackground, ScrollView, StyleSheet, useWindowDimension
 import { NavigationScreenProp } from 'react-navigation';
 import { IngredientsList } from '../ButtonComponents/Components/IngredientsList';
 import { GenericButton } from '../ButtonComponents/GenericButton';
- 
-// const sampleImg = {uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/greek-salad-3-1200.jpg?alt=media&token=1978a2df-c283-46b2-8754-73b233b21677'}
-//{...recipe, imgUrl: {uri : recipe.imgURL}}
 interface Route {
     key: string;
     name: string;
@@ -28,16 +25,12 @@ interface Route {
 }
 
 export const RecipeDetails = ({ navigation, route }: { navigation: NavigationScreenProp<any, any>, route: Route}) => {
-    const { recipe, email, favCuisines } = route.params
-  //console.log('navigation', navigation);
-  //console.log('recipe in details', recipe)
+  const { recipe, email, favCuisines } = route.params
 
   //routes
   const toHome = () => navigation.navigate('Home', { email: email, favCuisines: favCuisines});
   const toProfile = () => navigation.navigate('Profile')
   const windowHeight = useWindowDimensions().height;
-
-  //IntrinsicAttributes & IntrinsicClassAttributes<ImageBackground> & Readonly<ImageBackgroundProps> 
 
   return (
     <ScrollView style={styles.container}>
