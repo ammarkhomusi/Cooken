@@ -1,18 +1,13 @@
 import React from 'react';
 import { View, Text, ImageBackground, StyleSheet, TextInput, useWindowDimensions } from 'react-native';
+import { NavigationScreenProp } from 'react-navigation';
 import { GenericButton } from '../ButtonComponents/GenericButton';
 import { CheckBox } from 'react-native-elements';
  
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'}
 
-
-
-export default function Profile({ navigation }) {
+export default function Profile({ navigation}: { navigation: NavigationScreenProp<any, any>}) {
   const windowHeight = useWindowDimensions().height;
-  // TODO should get user info from global state when login is pressed
-  // const [email, setEmail] = useState(user.email)
-  // const [username, setUsername] = useState(user.username)
-
 
   //routes
   const toHome = () => {
@@ -28,14 +23,10 @@ export default function Profile({ navigation }) {
           <TextInput
             style={styles.inputFields}
             editable={false}
-            // TODO
-            // value={email}
           />
            <TextInput
             style={styles.inputFields}
             editable={false}
-            //TODO
-            // value={username}
           />
         </View>
         <View style={styles.checkBoxesContainer}>
@@ -49,7 +40,7 @@ export default function Profile({ navigation }) {
           <CheckBox></CheckBox><Text style={styles.checkBoxText}>indian</Text>
         </View>
         <View style={styles.buttons}>
-          <GenericButton text={'Edit Account Info'}/>
+          <GenericButton text={'Edit Account Info'} onPress={() => {}}/>
           <GenericButton text={'Save Changes'} onPress={toHome}/>
         </View>
       </ImageBackground>

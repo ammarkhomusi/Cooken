@@ -2,14 +2,14 @@ import React from 'react';
 import Navigator from './routes/homeStack';
  
 //user Context provider here
-export const UserContext = React.createContext();
-
 const defaultUserState = {
   email: '',
   password: '',
   username: '',
   favCuisines: [],
 };
+
+export const UserContext = React.createContext(defaultUserState);
 
 export default function App() {
   //setting blank state to context provider and updating on login press is username exists

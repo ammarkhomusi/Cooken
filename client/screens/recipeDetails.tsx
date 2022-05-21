@@ -1,25 +1,31 @@
-import React from 'react'
-import { View, Text, ImageBackground, ScrollView, StyleSheet, useWindowDimensions } from 'react-native'
+import React from 'react';
+import { View, Text, ImageBackground, ScrollView, StyleSheet, useWindowDimensions, ImageSourcePropType } from 'react-native';
+import { NavigationScreenProp } from 'react-navigation';
 import { IngredientsList } from '../ButtonComponents/Components/IngredientsList';
 import { GenericButton } from '../ButtonComponents/GenericButton';
- 
-// const sampleImg = {uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/greek-salad-3-1200.jpg?alt=media&token=1978a2df-c283-46b2-8754-73b233b21677'}
-//{...recipe, imgUrl: {uri : recipe.imgURL}}
+interface Route {
+    key: string;
+    name: string;
+    params: {
+        recipe: {
+            title: string;
+            difficulty: string;
+            ingredients: {
+                    ingredientName: string;
+                    ingredientAmount: number
+                }[];
+            instructions: string;
+            cuisineTag: string;
+            imgURL: ImageSourcePropType
+        };
+        email: string;
+        favCuisines: string[]
+    };
+    path: string | undefined
+}
 
-// interface Item {
-//     ingredientName: string;
-//     ingredientAmount: number;
-// }
-
-// interface Props {
-//     navigation: string;
-//     route: string;
-// }
-
-export const RecipeDetails = ({ navigation, route }) => {
-    const { recipe, email, favCuisines } = route.params
-  //console.log('navigation', navigation);
-  //console.log('recipe in details', recipe)
+export const RecipeDetails = ({ navigation, route }: { navigation: NavigationScreenProp<any, any>, route: Route}) => {
+  const { recipe, email, favCuisines } = route.params
 
   //routes
   const toHome = () => navigation.navigate('Home', { email: email, favCuisines: favCuisines});

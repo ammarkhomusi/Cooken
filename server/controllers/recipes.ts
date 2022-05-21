@@ -1,6 +1,7 @@
-const Recipe = require('../models/recipe');
+import Recipe from '../models/recipe';
+import { Request, Response } from 'express';
  
-const getRandomRecipe = async (req, res) => {
+export const getRandomRecipe = async (res: Response) => {
   try {
     const recipe = await Recipe.aggregate([{$sample:{size:1}}]);
     return res.status(200).send({ res: recipe.pop(), error: false});
@@ -9,7 +10,7 @@ const getRandomRecipe = async (req, res) => {
   }
 };
 
-const getRecipeByCuisine = async (req, res) => {
+export const getRecipeByCuisine = async (req: Request, res: Response) => {
   try {
     const { cuisineTag, difficulty } = req.params;
     let recipe;
@@ -24,7 +25,7 @@ const getRecipeByCuisine = async (req, res) => {
   }
 };
 
-const AddRecipe = async (req, res) => {
+export const AddRecipe = async (req: Request, res: Response) => {
   try {
     const recipe = req.body
     if(!recipe) {
@@ -38,10 +39,3 @@ const AddRecipe = async (req, res) => {
     return res.status(500).send({ res: 'Internal Service Error', error: true })
   }
 }
-
-module.exports = {
-  getRandomRecipe,
-  getRecipeByCuisine,
-  AddRecipe }
-
-

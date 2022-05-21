@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ImageBackground, LogBox } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import { NavigationScreenProp } from 'react-navigation';
 import { GenericButton } from '../ButtonComponents/GenericButton';
 //import { UserContext } from '../App';
 import { recipeServices } from '../Services/recipeService';
@@ -10,48 +11,50 @@ const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.apps
 
 const homeImg = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/Screenshot%20(70).png?alt=media&token=7bf3081e-d4f5-4865-a6bf-55e934ce3c84'};
 
+interface Route {
+    key: string;
+    name: string;
+    params: {
+        email: string;
+        favCuisines: string[]
+    };
+    path: string | undefined
+}
 
-export default function HomePage({ navigation, route }) {
-  const { email, favCuisines} = route.params;
-  console.log('this is params', route.params)
-  
-  const [recipe, setRecipe] = useState({});
-  //function to generate random tag
+export default function HomePage ({ navigation, route }: { navigation: NavigationScreenProp<any, any>, route: Route}) {
+  const { email, favCuisines } = route.params;
+
+  const [recipe, setRecipe] = useState<{}>({});
+
+  // generate random tag
   const randomRecipe =  async () => {
-    const newRecipe = await recipeServices.getRandomRecipe();
-    console.log('should be empty', recipe)
-    console.log('new recipe', newRecipe)
+    const newRecipe: {} = await recipeServices.getRandomRecipe();
     setRecipe(newRecipe);
-    console.log('this should be new recipe',recipe)
-  }; // surprise me button
+  };
 
-  //function to get random cuisinetag
+  // get random cuisinetag
   const cuisineTag = favCuisines[Math.floor(Math.random()*favCuisines.length)]
-  console.log('this is random cuisine tag',cuisineTag);
 
-  //function to get tag recipe
+  // get tag recipe
   const tagRecipe = async () => {
     const tagRecipe = await recipeServices.getRecipeByCuisine(cuisineTag, 'any')
-    console.log('this is tag recipe', tagRecipe)
     setRecipe(tagRecipe)
     return tagRecipe;
   }
 
-  //routes
-  const toProfile = () => navigation.navigate('Profile',{});
+  // routes
+  const toProfile = () => navigation.navigate('Profile', {});
   const toLogin = () => navigation.navigate('Login', { email: email, favCuisines: favCuisines});
-  //on get recipe with tags
+  
+  // on get recipe with tags
   const toTagResult =  async () => {
     const res = await tagRecipe()
-    console.log('homepage res', res)
-    navigation.navigate('Results',  {res: res, email: email, favCuisines: favCuisines, random: false})};
+    navigation.navigate('Results',  {recipe: res, email: email, favCuisines: favCuisines, random: false})};
 
     useEffect(() => {
         randomRecipe()
     }, [])
 
-  //on surprise me click
-  // THIS FN ISN'T PASSING DATA
   const toRandomResult = async () =>  {
     randomRecipe()
     navigation.navigate('Results', {recipe: recipe, email: email, favCuisines: favCuisines, random: true })

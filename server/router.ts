@@ -18,6 +18,6 @@ router.post('/login', userController.loginUser);
 //view profile info once authenticated
 router.get('/profile', userController.profileInfo);
 //logout user
-router.post('/logout', userController.logoutUser)
+router.post('/logout', userController.logoutUser);
 
 module.exports = router;

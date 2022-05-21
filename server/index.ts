@@ -1,12 +1,12 @@
 const express = require ('express');
-const app = express();
-const router = require('./router.js');
+const dotenv = require('dotenv')
 const cors = require('cors');
- 
+const router = require('./router.ts');
 // const session = require('express-session');
-//const SECRET = process.env.SECRET || 'dumb dumb';
-const dotenv = require('dotenv');
+// const SECRET = process.env.SECRET || 'dumb dumb';
+
 dotenv.config();
+const app = express();
 
 const PORT = process.env.SERVER_PORT;
 
