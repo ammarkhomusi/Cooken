@@ -1,7 +1,7 @@
 const express = require ('express');
-const dotenv = require('dotenv');
+const dotenv = require('dotenv')
 const cors = require('cors');
-const router = require('./router.js');
+const router = require('./router.ts');
 // const session = require('express-session');
 // const SECRET = process.env.SECRET || 'dumb dumb';
 
@@ -17,5 +17,3 @@ app.use(router);
 app.listen(PORT, () => {
   console.log(`listening on ${PORT}`)
 });
-
-export default router;

@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt');
-import { Request, Response } from 'express';
-import User from './../models/user';
+const { Request, Response } = require ('express');
+const User = require('./../models/user');
 
-export const createUser = async (req: Request, res: Response) => {
+exports.createUser = async (req: Request, res: Response) => {
   console.log('I am here', req.body);
   const { email, password } = req.body;
   const user = await User.findOne({ email: email });
@@ -25,7 +25,7 @@ export const createUser = async (req: Request, res: Response) => {
   }
 };
  
-export const loginUser = async (req: Request, res: Response) => {
+exports.loginUser = async (req: Request, res: Response) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email: email });
@@ -36,7 +36,7 @@ export const loginUser = async (req: Request, res: Response) => {
   }
 };
 
-export const profileInfo = async (req: any, res: Response) => {
+exports.profileInfo = async (req: any, res: Response) => {
   try {
     const { _id, userName, email, favCuisines } = req.user;
     const user = { _id, userName, email, favCuisines };
