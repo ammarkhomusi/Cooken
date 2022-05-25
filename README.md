@@ -50,5 +50,5 @@ Cooken is a mobile application taking the indecision out of choosing meals. Easi
 | Get Random Recipe                | GET     | /recipe                        |     201 |
 | Get Recipe Based On Preference   | GET     | /recipe/:cuisineTag/:difficulty |     200 |
 
-  
+## Credit
 Created and built by [Mike Kaib](https://github.com/mkcannon) - Full Stack Developer and [Ash Mudra](https://github.com/AshMudra) - Full Stack Developer
