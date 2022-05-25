@@ -35,7 +35,7 @@ Cooken is a mobile application taking the indecision out of choosing meals. Easi
 ```nodemon```
 ### Database
 - Choose your ODM - we used MongoDB Compass
-- Setup your account and add your credentials to the .env file
+- Set up your account and add your credentials to the .env file
 
 ## API Endpoints
 
@@ -45,10 +45,10 @@ Cooken is a mobile application taking the indecision out of choosing meals. Easi
 | Register New User                | POST    | /register                      |     201 |
 | User Login                       | POST    | /login                         |     200 |
 | Get User Profile                  | GET     | /profile                        |     200 |
-| Logout                           | POST    | /logout                        |     204 |
 | 📝 Recipes                       |
 | Get Random Recipe                | GET     | /recipe                        |     201 |
 | Get Recipe Based On Preference   | GET     | /recipe/:cuisineTag/:difficulty |     200 |
 
 ## Credit
-Created and built by [Mike Kaib](https://github.com/mkcannon) - Full Stack Developer and [Ash Mudra](https://github.com/AshMudra) - Full Stack Developer
+Created and built by [Mike Kaib](https://github.com/mkcannon) - Full Stack Developer 
+Refactored by [Ash Mudra](https://github.com/AshMudra) - Full Stack Developer
