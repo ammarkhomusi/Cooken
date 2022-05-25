@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
 import { GenericButton } from '../ButtonComponents/GenericButton';
-//import { UserContext } from '../App';
 import { recipeServices } from '../Services/recipeService';
- 
-//LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);
 
 const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.appspot.com/o/screenshot%20no%20lines.png?alt=media&token=8b555913-fa90-4848-93db-96d0bce147e1'};
 
@@ -26,40 +23,33 @@ export default function HomePage ({ navigation, route }: { navigation: Navigatio
 
   const [recipe, setRecipe] = useState<{}>({});
 
-  // generate random tag
   const randomRecipe =  async () => {
     const newRecipe: {} = await recipeServices.getRandomRecipe();
     setRecipe(newRecipe);
   };
 
-  // get random cuisinetag
   const cuisineTag = favCuisines[Math.floor(Math.random()*favCuisines.length)]
 
-  // get tag recipe
   const tagRecipe = async () => {
     const tagRecipe = await recipeServices.getRecipeByCuisine(cuisineTag, 'any')
     setRecipe(tagRecipe)
     return tagRecipe;
   }
 
-  // routes
   const toProfile = () => navigation.navigate('Profile', {});
   const toLogin = () => navigation.navigate('Login', { email: email, favCuisines: favCuisines});
   
-  // on get recipe with tags
   const toTagResult =  async () => {
     const res = await tagRecipe()
     navigation.navigate('Results',  {recipe: res, email: email, favCuisines: favCuisines, random: false})};
 
     useEffect(() => {
-        randomRecipe()
+      randomRecipe()
     }, [])
 
   const toRandomResult = async () =>  {
     randomRecipe()
     navigation.navigate('Results', {recipe: recipe, email: email, favCuisines: favCuisines, random: true })
-    // const res =  await randomRecipe()
-    // navigation.navigate('Results', res)
   }
 
   return (
@@ -73,13 +63,10 @@ export default function HomePage ({ navigation, route }: { navigation: Navigatio
         <View style={styles.rollButtons}>
           <Text style={styles.explainText}>Picks a dish based off your preferences</Text>
           <GenericButton text={'Roll For Your Recipe!'} onPress={toTagResult}/>
-          {/* add a dropdown option for difficutly? */}
           <Text style={styles.explainText}>Picks a totally random dish!</Text>
           <GenericButton text={'Suprise Me!!'} onPress={toRandomResult}/>
         </View>
         <View  style={styles.navButtons}>
-          {/* <RouteButton text={'Profile'} style/>
-          <RouteButton text={'Logout'}/> */}
           <GenericButton text={'Profile'} style={{width:175, marginLeft:17}} onPress={toProfile}/>
           <GenericButton text={'Logout'} style={{width:175, marginLeft:10}} onPress={toLogin}/>
         </View>
@@ -91,8 +78,6 @@ export default function HomePage ({ navigation, route }: { navigation: Navigatio
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center'
   },
   img:{
     flex: 1,
@@ -132,13 +117,11 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:'center',
     flex:1,
-    // backgroundColor:'green'
   },
   navButtons:{
     flex:.2,
     justifyContent:'flex-start',
     flexDirection:'row',
-    // backgroundColor:'blue'
   },
   routeButtons:{
     width:  10

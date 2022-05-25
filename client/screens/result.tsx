@@ -21,58 +21,51 @@ interface Route {
 }
 
 export default function Results({ navigation, route }: { navigation: NavigationScreenProp<any, any>, route: Route}) {
-    const {recipe, email, favCuisines} = route.params;
+  const {recipe, email, favCuisines} = route.params;
 
-    const [newRecipe, setNewRecipe] = useState({...recipe, imgURL: { uri: recipe.imgURL}});
+  const [newRecipe, setNewRecipe] = useState({...recipe, imgURL: { uri: recipe.imgURL}});
 
-    const windowHeight = useWindowDimensions().height;
+  const windowHeight = useWindowDimensions().height;
 
-    // function that rerolls
-    const randomRecipe =  async () => {
-        const fetchedRecipe = await recipeServices.getRandomRecipe();
+  const randomRecipe =  async () => {
+    const fetchedRecipe = await recipeServices.getRandomRecipe();
 
-        setNewRecipe({...fetchedRecipe, imgURL: { uri: fetchedRecipe.imgURL}});
-    }
+    setNewRecipe({...fetchedRecipe, imgURL: { uri: fetchedRecipe.imgURL}});
+  }
 
-    // routes
-    const toDetails = () => navigation.navigate('RecipeDetails', { recipe: newRecipe, email: email, favCuisines: favCuisines });
-    
-    const reloadWithNewResult = () => {
-        randomRecipe()
-    };
+  const toDetails = () => navigation.navigate('RecipeDetails', { recipe: newRecipe, email: email, favCuisines: favCuisines });
+  
+  const reloadWithNewResult = () => {
+    randomRecipe()
+  };
 
-    const toHome = () => navigation.navigate('Home', {email: email, favCuisines: favCuisines});
-    const toProfile = () => navigation.navigate('Profile');
+  const toHome = () => navigation.navigate('Home', {email: email, favCuisines: favCuisines});
+  const toProfile = () => navigation.navigate('Profile');
 
-    return (
-        <View style={[styles.container, {minHeight: Math.round(windowHeight)}]} >
-            <ImageBackground source={img} resizeMode='cover' style={styles.img}>
-            <View style={styles.logo}>
-                <Text style={styles.header}>Here's Your Dish!</Text>
-                <Text style={styles.dishTitle}>{newRecipe.title}</Text>
-                <ImageBackground source={newRecipe.imgURL} resizeMode='cover' style={styles.sampleImg} imageStyle={styles.image}></ImageBackground>
-            </View>
-            <View style={styles.chooseButtons}>
-                <GenericButton text={'Get Cooken!'} style={{marginTop:15}} onPress={toDetails}/>
-                {/* add a dropdown option for difficutly? */}
-                <GenericButton text={'Re-roll'} onPress={reloadWithNewResult}/>
-            </View>
-            <View  style={styles.navButtons}>
-                {/* <RouteButton text={'Profile'} style/>
-                <RouteButton text={'Logout'}/> */}
-                <GenericButton text={'Home'}  style={{width:175, marginLeft:17}} onPress={toHome}/>
-                <GenericButton text={'Profile'} style={{width:175, marginLeft:10}} onPress={toProfile}/>
-            </View>
-            </ImageBackground>
-        </View>
-    )
+  return (
+    <View style={[styles.container, {minHeight: Math.round(windowHeight)}]} >
+      <ImageBackground source={img} resizeMode='cover' style={styles.img}>
+      <View style={styles.logo}>
+        <Text style={styles.header}>Here's Your Dish!</Text>
+        <Text style={styles.dishTitle}>{newRecipe.title}</Text>
+        <ImageBackground source={newRecipe.imgURL} resizeMode='cover' style={styles.sampleImg} imageStyle={styles.image}></ImageBackground>
+      </View>
+      <View style={styles.chooseButtons}>
+        <GenericButton text={'Get Cooken!'} style={{marginTop:15}} onPress={toDetails}/>
+        <GenericButton text={'Re-roll'} onPress={reloadWithNewResult}/>
+      </View>
+      <View  style={styles.navButtons}>
+        <GenericButton text={'Home'}  style={{width:175, marginLeft:17}} onPress={toHome}/>
+        <GenericButton text={'Profile'} style={{width:175, marginLeft:10}} onPress={toProfile}/>
+      </View>
+      </ImageBackground>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center'
   },
   img:{
     flex: 1,
@@ -85,7 +78,7 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent:'center',
     width: 400,
-    height: 400,
+    height: 400
   },
   image:{
 
@@ -94,20 +87,17 @@ const styles = StyleSheet.create({
   logo:{
     justifyContent:'center',
     alignItems:'center',
-    flex:2,
-    // backgroundColor:'yellow'
+    flex:2
   },
   chooseButtons:{
     justifyContent:'center',
     alignItems:'center',
-    flex:1,
-    // backgroundColor:'green'
+    flex:1
   },
   navButtons:{
     flex:.27,
     justifyContent:'flex-start',
-    flexDirection:'row',
-    // backgroundColor:'blue'
+    flexDirection:'row'
   },
   header:{
     paddingTop:20,

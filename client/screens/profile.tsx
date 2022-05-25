@@ -9,11 +9,9 @@ const img = { uri: 'https://firebasestorage.googleapis.com/v0/b/cooken-imgs.apps
 export default function Profile({ navigation}: { navigation: NavigationScreenProp<any, any>}) {
   const windowHeight = useWindowDimensions().height;
 
-  //routes
   const toHome = () => {
     navigation.navigate('Home')
   }
-
 
   return (
     <View style={[styles.container, {minHeight: Math.round(windowHeight)}]} >
@@ -68,7 +66,6 @@ const styles = StyleSheet.create({
   },
   inputs:{
     flex: 1,
-    // backgroundColor: 'yellow',
     justifyContent:'center',
     alignItems: 'center',
     paddingTop:30,
@@ -99,6 +96,5 @@ const styles = StyleSheet.create({
     alignItems:'center',
     color:'orange',
     flex:1,
-    // backgroundColor: 'green',
   }
 })

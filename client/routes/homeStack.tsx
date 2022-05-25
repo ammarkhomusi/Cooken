@@ -29,33 +29,3 @@ function App() {
 }
 
 export default App;
-
-// const screens = {
-//   //first screen
-//   Login: {
-//     screen: Login
-//   },
-//   Register: {
-//     screen: Register
-//   },
-//   Home:{
-//     screen: Home
-//   },
-//   Profile: {
-//     screen: Profile
-//   },
-//   Results: {
-//     screen: Results
-//   },
-//   RecipeDetails: {
-//     screen: RecipeDetails
-//   }
-
-// }
-// const HomeStack = createStackNavigator(screens, {
-//   defaultNavigationOptions: {
-//     headerShown: false,
-//   }
-// })
-
-// export default createAppContainer(HomeStack)
