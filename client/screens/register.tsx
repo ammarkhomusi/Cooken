@@ -16,7 +16,6 @@ export default function Register ({ navigation }: { navigation: NavigationScreen
   const [username, setUsername] = useState('');
   const [favCuisines, setFavCuisines] = useState<string[]>([]);
 
-  //checkbox states
   const [italianIsChecked, setItalianIsChecked] = useState({ checked: false , value: 'italian'});
   const [greekIsChecked, setGreekIsChecked] = useState({checked: false, value: 'greek'});
   const [americanIsChecked, setAmericanIsChecked] = useState({checked: false, value:'american'});
@@ -38,8 +37,6 @@ export default function Register ({ navigation }: { navigation: NavigationScreen
       'Content-Type': 'application/json'},
       body: JSON.stringify(newUser)
     }).then((res) => {
-      //console.log('res', res)
-      //console.log('new user', {newUser})
     }).catch((error) => {
         console.log(error)
     })
@@ -55,19 +52,17 @@ export default function Register ({ navigation }: { navigation: NavigationScreen
     setIndianIsChecked({checked: false, value:'indian'});
     navigation.navigate('Login');
   }
-  
-    //checkbox add to favecuisine array
-    const saveCheck = (obj: {checked: boolean, value: string}) => {
-        console.log('saveCheck obj', obj);
-      if(!obj.checked) {
-        setFavCuisines([...favCuisines, obj.value])
-      } else {
-        setFavCuisines(favCuisines.filter((cuisine)=> {
-          return cuisine !== obj.value;
-        }))
-      }
 
+  const saveCheck = (obj: {checked: boolean, value: string}) => {
+    if(!obj.checked) {
+      setFavCuisines([...favCuisines, obj.value])
+    } else {
+      setFavCuisines(favCuisines.filter((cuisine)=> {
+        return cuisine !== obj.value;
+      }))
     }
+
+  }
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -165,7 +160,6 @@ const styles = StyleSheet.create({
   },
   inputs:{
     flex: 1,
-    // backgroundColor: 'yellow',
     justifyContent:'center',
     alignItems: 'center',
     padding: 20
@@ -175,8 +169,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'center',
     alignItems:'center',
-    flex:.2,
-    // backgroundColor:'blue'
+    flex:.2
   },
   checkBox:{
     color:'black'
@@ -191,8 +184,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:'center',
     color:'orange',
-    flex:1,
-    // backgroundColor: 'green',
+    flex:1
   },
   inputFields:{
     backgroundColor: 'white',

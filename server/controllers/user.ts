@@ -32,7 +32,7 @@ exports.loginUser = async (req: Request, res: Response) => {
     console.log('user in controllers', user)
     res.status(200).send(user);
   } catch (error) {
-   res.status(401).send({ error: '401', message: 'Username or password is incorrect'});
+    res.status(401).send({ error: '401', message: 'Username or password is incorrect'});
   }
 };
 
@@ -45,17 +45,3 @@ exports.profileInfo = async (req: any, res: Response) => {
     res.status(400).send({ error, message: 'User not found'})
   }
 };
-
-// const logoutUser = (req: any, res: Response) => {
-//   req.session.destroy((error) => {
-//     if(error) {
-//       res
-//         .status(500)
-//         .send({ error, message: 'Could not logout, please try again' });
-//     } else {
-//       res.clearCookie()
-//     }
-//   });
-// };
-
-// module.exports = { logoutUser }

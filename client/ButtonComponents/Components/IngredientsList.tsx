@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
   ingredientsContainer:{
     flex:.1,
     flexDirection:'row',
-    // backgroundColor:'green',
     margin:10
 
   },

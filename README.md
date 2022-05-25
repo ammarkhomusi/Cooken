@@ -1,8 +1,8 @@
 # Cooken
 
-![logo](readmeAssets/login.png)
-
 Cooken is a mobile application taking the indecision out of choosing meals. Easily add, save, and categorize your favorite recipes. And for extra fun, the 'surprise me!' button will generate a random recipe based on your preferences. Upcoming features include scheduling out a week's worth of meals.
+
+![logo](readmeAssets/login.png)
 
 ![recipe](readmeAssets/recipe.png)
 ## Tech Stack
@@ -39,20 +39,16 @@ Cooken is a mobile application taking the indecision out of choosing meals. Easi
 
 ## API Endpoints
 
-| API                                                  | Method  | Endpoint                           |  Status |
-| :--------------------------------------------------- | :------ | :--------------------------------- | ------: |
-| 🙋‍♀️ Users                                             |
-| [Register User](#registerUser)                       | POST    | /user/register                     |     201 |
-| [User Login](#userLogin)                             | POST    | /user/login                        |     200 |
-| [Get User Profile](#getUser)                          | GET     | /user/find                          |     200 |
-| [Delete User Profile](#deleteUser)                    | DELETE  | /user/find                          |     204 |
-| 📝 Recipes                                         |
-| [Register Vendor](#registerVendor)                   | POST    | /vendor/register                   |     201 |
-| [Vendor Login](#vendorLogin)                         | POST    | /vendor/login                      |     200 |
-| [Get Vendor Profile](#getVendorProfile)                | GET     | /vendor/find                        |     200 |
-| [Get Vendor By Name](#getVendorByName)               | POST    | /vendor/name                       |     200 |
-| [Get Available Vendors](#getAvailableVendors)        | GET     | /vendor/availability               |     200 |
+| API                              | Method  | Endpoint                 |  Status |
+| :------------------------------  | :------ | :----------------------- | ------: |
+| 🙋‍♀️ Users                         |
+| Register New User                | POST    | /register                      |     201 |
+| User Login                       | POST    | /login                         |     200 |
+| Get User Profile                  | GET     | /profile                        |     200 |
+| Logout                           | POST    | /logout                        |     204 |
+| 📝 Recipes                       |
+| Get Random Recipe                | GET     | /recipe                        |     201 |
+| Get Recipe Based On Preference   | GET     | /recipe/:cuisineTag/:difficulty |     200 |
 
 ### Credit
-Creator and Full Stack Developer - [Mike Kaib](https://github.com/mkcannon)
-Full Stack Developer - [Ash Mudra](https://github.com/AshMudra)
+Created and built by [Mike Kaib](https://github.com/mkcannon) - Full Stack Developer, and [Ash Mudra](https://github.com/AshMudra) - Full Stack Developer
