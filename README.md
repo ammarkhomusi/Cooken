@@ -2,9 +2,8 @@
 
 Cooken is a mobile application taking the indecision out of choosing meals. Easily add, save, and categorize your favorite recipes. And for extra fun, the 'surprise me!' button will generate a random recipe based on your preferences. Upcoming features include scheduling out a week's worth of meals.
 
-![logo](readmeAssets/login.png)
+![allscreens](readmeAssets/allscreens.png)
 
-![recipe](readmeAssets/recipe.png)
 ## Tech Stack
 ### Frontend
 - React Native with Expo
