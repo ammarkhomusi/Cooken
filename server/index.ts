@@ -2,8 +2,6 @@ const express = require ('express');
 const dotenv = require('dotenv')
 const cors = require('cors');
 const router = require('./router.ts');
-// const session = require('express-session');
-// const SECRET = process.env.SECRET || 'dumb dumb';
 
 dotenv.config();
 const app = express();
